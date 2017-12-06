@@ -22,6 +22,8 @@ function DoNovaRolls(amount) {
     return {"str": response, "novas": novas, "successes": successes};
 }
 
+
+
 module.exports = function NovaDice(message) {
     var results = diceRegex.exec(message);
     var diceAmount = results[1] ? results[1] : 1;

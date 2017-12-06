@@ -48,6 +48,7 @@ function ShowCharacterStatus(character) {
 }
 
 module.exports = {
+  
     'D6' : function () {
       var dice = 1 + Math.floor((Math.random() * 6));
       var str = "ERROR";

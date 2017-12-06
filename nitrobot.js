@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-var Nova = require('modules/nova');
-var FU = require('modules/fu');
-var DDD = require('modules/ddd');
-var Utils = require('modules/utils');
-var _token = require('token');
+var Nova    = require('./modules/nova');
+var FU      = require('./modules/fu');
+var DDD     = require('./modules/ddd');
+var Utils   = require('./modules/utils');
+var _token  = require('./token');
 
 client.on('ready', () => {
   console.log('I am ready!');
