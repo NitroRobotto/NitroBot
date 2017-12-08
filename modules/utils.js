@@ -3,6 +3,10 @@ var _charData = {};
 var statusRegex = /^ *"?([^"]*)/i;
 var setRegex = /^ *"([^"]+)" ([^ ]+) (.+)/i;
 
+function GetRandomFromList(list) {
+  return list[Math.floor(Math.random() * list.length)];
+}
+
 function GetDatabaseID(message) {
   switch (message.channel.type) {
     case 'group':
@@ -105,6 +109,8 @@ module.exports = {
       }
       
       return "Couldn't find that character! Possible reasons:\n- Your spelling could be wrong (names are case sensitive!)\n- The bot has reset (data is lost on bot restarts)";
-    }
+    },
+    
+    'GetRandomFromList' : GetRandomFromList
 
 }

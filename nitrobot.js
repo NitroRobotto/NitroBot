@@ -5,6 +5,7 @@ var Nova    = require('./modules/nova');
 var FU      = require('./modules/fu');
 var DDD     = require('./modules/ddd');
 var Utils   = require('./modules/utils');
+var Joke    = require('./modules/joke');
 var _token  = require('./token');
 
 client.on('ready', () => {
@@ -27,7 +28,8 @@ var replyFunctions = {
   'ddd'  : DDD,
   '2d6'  : DDD,
   'fu'   : FU,
-  'd6'   : Utils.D6
+  'd6'   : Utils.D6,
+  'edge' : Joke.Edge
 }
 
 var sendFunctions = {
