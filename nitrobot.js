@@ -28,7 +28,6 @@ var replyFunctions = {
   'ddd'  : DDD,
   '2d6'  : DDD,
   'fu'   : FU,
-  'd6'   : Utils.D6,
   'edge' : Joke.Edge
 }
 
