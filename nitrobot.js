@@ -13,8 +13,12 @@ client.on('ready', () => {
 });
 
 function Help() {
-  return "Commands:\n\tddd = Rolls 2d6 and adds them together. [Example: -ddd]"
+  return "**Dice Commands:**\n\tddd = Rolls 2d6 and adds them together. [Example: -ddd or -2d6]"
     +"\n\tnova {n} = Rolls n Nova Dice. [Example: -nova 7]"
+    +"\n\tfu {n} = Rolls n Freeform Unlimited dice. [Example: -fu 2]"
+    +"\n\n**Random Commands:**"
+    +"\n\tedge = Crawls in your skin"
+    +"\n\n**Utility Commands:**"
     +"\n\tset \"char\" {stat} {value} = Sets target character's HP to a certain value. [Example: -set \"Potato\" hp 3]"
     +"\n\tstatus \"char\" = Gets the status of the defined character. [Example: -status \"Potato\"";
 }
