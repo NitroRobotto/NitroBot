@@ -3,7 +3,8 @@ var Utils = require('./utils');
 var edgeStarters = [
     "\\*teleports behind you\\*",
     "\\*teleports behind you and draws a katana\\*",
-    "\\*draws a katana\\*",
+    "\\*draws katana\\*",
+    "\\*draws a black katana\\*",
     "\\*leans against wall\\*",
     "\\*looks at you as if you were nothing\\*",
     "\\*teleports behind you\\* psch...",
@@ -12,15 +13,30 @@ var edgeStarters = [
     "\\*smirks\\*",
     "\\*covers himself with a cape\\*",
     "\\*kills you\\*",
-    "\\*buils the wall\\*",
     "\\*stops time\\*",
     "\\*reaches its final form\\*",
     "\\*moves so fast that you can't see it comming\\*",
     "\\*charges up power\\*",
-    "\\*disappears and you hear a voice echo\\*",
+    "\\*disappears but you hear a whisper\\*",
     "\\*its power level suddenly increases\\*",
     "\\*is surrounded by a dark aura\\*",
-    "\\*its hair turns white and its eyes glow red\\*"
+    "\\*its hair turns white and its eyes glow red\\*",
+    "\\*smiles grimly\\*",
+    "\\*dissapears in the shadows\\*",
+    "\\*whispers from behind you\\*",
+    "\\*irradiates a powerful dark aura\\*",
+    "\\*extends its devil wings and flies over you\\*",
+    "\\*extends an angel wing and a devil wing\\*",
+    "\\*extends black angel wings and flies over you\\*",
+    "\\*covers its face with a dark hood\\*",
+    "\\*gazes at you from over its shoulder\\*",
+    "\\*kills you three times before you hit the ground\\*",
+    "\\*its eyes glow red\\*",
+    "\\*licks blood from its knife\\*",
+    "\\*leans against wall\\*",
+    "\\*scoffs\\*",
+    "\\*powers up\\*",
+    "\\*smirks with disdain\\*"
 ];
 
 var edgePhrases = [
@@ -43,12 +59,37 @@ var edgePhrases = [
     "Were you even alive in the first place?",
     "Nothin personnel... Kid.",
     "We have a name for your kind: Prey.",
-    "Your life I can end, but the monsters within myself cannot be defeated."
+    "Your life I can end, but the monsters within myself cannot be defeated.",
+    "My parents are dead. So will you.",
+    "This isn't even my final form.",
+    "You're just an insect that needs to be squashed.",
+    "Not afraid? Fool... I will make you tremble.",
+    "I've walked dark paths you couldn't even dare to imagine.",
+    "Give me a taste of your soul.",
+    "This world will perish... But you won't be here to see it.",
+    "Your will is no longer your own.",
+    "I am the monster that haunts your nightmares.",
+    "Madness wil consume you.",
+    "You are not prepared to face me.",
+    "Everyone has a dark side... I just happen to have lost my light.",
+    "I am the reaper.",
+    "Don't blame me, blame the society that made me.",
+    "My thoughts destroyed me more than my blades will destroy you.",
+    "Life is a disease and I'm here to cure it.",
+    "Pathetic.",
+    "I will show you the true meaning of suffering.",
+    "In this world there is fear, death, evil... And me.",
+    "Sore throat? I have the perfect cure: A blade.",
+    "I am not the hero the world wants but the villain it deserves.",
+    "Your tears are all the payment I will ever need.",
+    "Life is a prision. Let me set you free.",
+    "Check mate.",
+    "Nobody can save you from me."
 ];
 
 function edge() {
     return Utils.GetRandomFromList(edgeStarters)
-        + "***" + Utils.GetRandomFromList(edgePhrases) + "***";
+        + " ***" + Utils.GetRandomFromList(edgePhrases) + "***";
 }
 
 module.exports = {
