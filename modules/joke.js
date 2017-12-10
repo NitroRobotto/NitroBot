@@ -36,7 +36,17 @@ var edgeStarters = [
     "\\*leans against wall\\*",
     "\\*scoffs\\*",
     "\\*powers up\\*",
-    "\\*smirks with disdain\\*"
+    "\\*smirks with disdain\\*",
+    "\\*stares at you from the corner of the room\\*",
+    "\\*looks into your eyes as your life fades away\\*",
+    "\\*kills you, but you still haven't noticed\\*",
+    "\\*turns into its half-demon form\\*",
+    "\\*wields the power of good and evil\\*",
+    "\\*is mysterious yet friendly\\*",
+    "\\*was abandoned as a child\\*",
+    "\\*you can feel death approaching\\*",
+    "\\*kills your family\\*",
+    "\\*finishes you off\\*"
 ];
 
 var edgePhrases = [
@@ -84,7 +94,24 @@ var edgePhrases = [
     "Your tears are all the payment I will ever need.",
     "Life is a prision. Let me set you free.",
     "Check mate.",
-    "Nobody can save you from me."
+    "Nobody can save you from me.",
+    "Die! Die! Die!",
+    "The only moment I feel truly alive is when I kill.",
+    "Your life is worthless to me. But I will still take it away from you.",
+    "Let me feed on your suffering.",
+    "Death comes to us all... I'll make sure yours arrives soon.",
+    "Your life is mine.",
+    "You cannot escape.",
+    "Your end will make my day.",
+    "Can you hear your death approaching?",
+    "I am a creature of the night.",
+    "My power is beyond your comprehension.",
+    "Face my wrath!",
+    "I will make you wish you had never been born.",
+    "I killed many before and will kill many more: Your death is not special to me.",
+    "Die.",
+    "Omae wa mou... Shindeiru.",
+    "You are not worth my effort."
 ];
 
 function edge() {
