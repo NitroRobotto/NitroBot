@@ -11,7 +11,7 @@ var edgeStarters = [
     "\\*laughs maniatically\\*",
     "\\*smiles sadistically, eyes wide\\*",
     "\\*smirks\\*",
-    "\\*covers himself with a cape\\*",
+    "\\*covers itself with a cape\\*",
     "\\*kills you\\*",
     "\\*stops time\\*",
     "\\*reaches its final form\\*",
@@ -46,7 +46,18 @@ var edgeStarters = [
     "\\*was abandoned as a child\\*",
     "\\*you can feel death approaching\\*",
     "\\*kills your family\\*",
-    "\\*finishes you off\\*"
+    "\\*finishes you off\\*",
+    "\\*has an eye of each colour\\*",
+    "\\*irradiates a cold hearted aura but you feel that you can be friends with it\\*",
+    "\\*is neither good nor evil\\*",
+    "\\*is beyond silly concepts such as good and evil\\*",
+    "\\*wields a cursed sword\\*",
+    "\\*has a scar on its face but is beautiful\\*",
+    "\\*original character do not steal\\*",
+    "\\*is very smart\\*",
+    "\\*runs at you intelligently\\*",
+    "\\*is better than you in every way\\*",
+    "\\*is an all-powerful god of death\\*"
 ];
 
 var edgePhrases = [
@@ -111,7 +122,25 @@ var edgePhrases = [
     "I killed many before and will kill many more: Your death is not special to me.",
     "Die.",
     "Omae wa mou... Shindeiru.",
-    "You are not worth my effort."
+    "You are not worth my effort.",
+    "You will never understand how I feel.",
+    "I hurt those I love but I destroy those I hate.",
+    "My cold heart has no room for mercy.",
+    "Those around me always get hurt... Guess where I am now.",
+    "There is no hope for someone like me.",
+    "My blade hungers.",
+    "I was born from hate, you will born by it.",
+    "My blade is as sharp as my hate for those still living.",
+    "There is no hope.",
+    "You are weak.",
+    "Foolish.",
+    "In the end, you died alone.",
+    "There is no escape. Not in this life, not in the next.",
+    "I will hunt you down.",
+    "I am a hunter; you are my pray.",
+    "I will set your soul free of the pain of living.",
+    "My power level is superior to yours.",
+    "Give up. It is too late for you."
 ];
 
 function edge() {
