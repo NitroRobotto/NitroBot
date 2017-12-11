@@ -210,23 +210,58 @@ var mulletStarters = [
     "\\*is a true american hero\\*",
     "\\*an eagle flyes by\\*",
     "\\*saves the president\\*",
-    "\\*stops the invasion by itself\\*"
+    "\\*stops the invasion by itself\\*",
+    "\\*embodies freedom\\*",
+    "\\*has the best guns\\*",
+    "\\*epic guitar solo\\*",
+    "\\*patriotic trumpets\\*",
+    "\\*fights for freedom\\*",
+    "\\*has balls of steel\\*",
+    "\\*hates terrorists\\*",
+    "\\*hates nazis\\*",
+    "\\*reloads machine gun\\*",
+    "\\*fights for independence\\*",
+    "\\*defeats the aliens\\*"
 ];
 
 var mulletPhrases = [
     "I AM STRONG!",
     "I WILL KILL YOU DEAD WITH MY MUSLCES!",
     "AAAAAARGH!",
-    "THE BIGGER THEY ARE, THE HARDER THEY FALL!",
+    "THE BIGGER THEY ARE, THE HARDER I SHOOT THEM!",
     "RAAAARGH!",
     "DIE, TERRORIST!",
     "DIE, NAZI SCUM!",
     "AAAAAAAAAAAAAARGH!!!1!11!",
-    "AMERICA, FUCK YEAH!"
+    "AMERICA, FUCK YEAH!",
+    "FREEDOOOOM!",
+    "I WILL FIGHT FOR FREEDOM!",
+    "YOU CANNOT DEFEAT FREEDOM!",
+    "ROCK ON, MR PRESIDENT. THE CYBORG NINJAS WON'T BOTHER YOU AGAIN.",
+    "I HAVE BALLS OF STEEL.",
+    "PIECE OF CAKE.",
+    "IT'S TIME TO KICK ASS AND CHEW BUBBLE GUM, AND I'M ALL OUTTA GUM!",
+    "YOU ARE AN INSPIRATION FOR BIRTH CONTROL!",
+    "GROOVY!",
+    "SEE YOU IN HELL, TERRORIST SCUM!",
+    "YEAH, BABY!",
+    "HOLY SHIT!",
+    "BORN TO BE WILD!",
+    "HAIL TO THE KING, BABY!",
+    "YIPPEE KI-YAY, MOTHERFUCKER!",
+    "NOBODY THREATENS INDEPENDENCE AND LIVES!",
+    "I'M GONNA GO MEDIEVAL ON YOUR ASSES!",
+    "I'LL BE BACK.",
+    "DAMN I'M LOOKING GOOD.",
+    "LET'S ROCK.",
+    "I'M GONNA TURN YOU INSIDE OUT!",
+    "DIE, YOU SUNNUVABITCH!",
+    "YOUR ONLY MISTAKE WAS PISSING ME OFF!",
+    "I'M GONNA KICK YOUR ASS!"
 ];
 
 function phrase(starterList, phraseList) {
-    Utils.GetRandomFromList(starterList)
+    return Utils.GetRandomFromList(starterList)
         + " ***" + Utils.GetRandomFromList(phraseList) + "***";
 }
 
@@ -235,7 +270,7 @@ function edge() {
 }
 
 function mullet() {
-    return mullet(mulletStarters, mulletPhrases);
+    return phrase(mulletStarters, mulletPhrases);
 }
 
 module.exports = {
