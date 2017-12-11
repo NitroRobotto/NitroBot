@@ -195,11 +195,50 @@ var edgePhrases = [
     "Why should I care for those I kill? Do you care for the bread you eat?"
 ];
 
+var mulletStarters = [
+    "\\*is stronk\\*",
+    "\\*has tons of guns\\*",
+    "\\*reloads shotgun\\*",
+    "\\*puts on sunglasses\\*",
+    "\\*flies away in helicopter\\*",
+    "\\*jumps in using parachute\\*",
+    "\\*roundhouse kicks the bad guys\\*",
+    "\\*jumps from a building and lands on a trashcan. is fine\\*",
+    "\\*shoots all the bad guys\\*",
+    "\\*is the strongest\\*",
+    "\\*nobody is stronger than him\\*",
+    "\\*is a true american hero\\*",
+    "\\*an eagle flyes by\\*",
+    "\\*saves the president\\*",
+    "\\*stops the invasion by itself\\*"
+];
+
+var mulletPhrases = [
+    "I AM STRONG!",
+    "I WILL KILL YOU DEAD WITH MY MUSLCES!",
+    "AAAAAARGH!",
+    "THE BIGGER THEY ARE, THE HARDER THEY FALL!",
+    "RAAAARGH!",
+    "DIE, TERRORIST!",
+    "DIE, NAZI SCUM!",
+    "AAAAAAAAAAAAAARGH!!!1!11!",
+    "AMERICA, FUCK YEAH!"
+];
+
+function phrase(starterList, phraseList) {
+    Utils.GetRandomFromList(starterList)
+        + " ***" + Utils.GetRandomFromList(phraseList) + "***";
+}
+
 function edge() {
-    return Utils.GetRandomFromList(edgeStarters)
-        + " ***" + Utils.GetRandomFromList(edgePhrases) + "***";
+    return phrase(edgeStarters, edgePhrases);
+}
+
+function mullet() {
+    return mullet(mulletStarters, mulletPhrases);
 }
 
 module.exports = {
-    'Edge' : edge
+    'Edge' : edge,
+    'Mullet': mullet
 };

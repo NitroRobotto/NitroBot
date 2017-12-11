@@ -32,7 +32,8 @@ var replyFunctions = {
   'ddd'  : DDD,
   '2d6'  : DDD,
   'fu'   : FU,
-  'edge' : Joke.Edge
+  'edge' : Joke.Edge,
+  'mullet': Joke.Mullet
 }
 
 var sendFunctions = {
