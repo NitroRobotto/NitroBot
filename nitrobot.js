@@ -54,15 +54,17 @@ client.on('message', message => {
   if(message.author.bot) return;
   
   // Handle commands
-  var command = commandRegex.exec(message.content);
+  var result = commandRegex.exec(message.content);
   
-  if (command) {
-    if (replyFunctions[command[1]]) {
-      message.reply(replyFunctions[command[1]](command[2], message));
-    } else if (sendFunctions[command[1]]) {
-      message.channel.send(sendFunctions[command[1]](command[2], message));
-    } else if (internalFunctions[command[1]]) {
-      internalFunctions[command[1]](command[2], message);
+  if (result) {
+    var command = result[1].toLowerCase();
+    var parameters = result[2];
+    if (replyFunctions[command]) {
+      message.reply(replyFunctions[command](parameters, message));
+    } else if (sendFunctions[command]) {
+      message.channel.send(sendFunctions[command](parameters, message));
+    } else if (internalFunctions[command]) {
+      internalFunctions[command](parameters, message);
     }
   }
 });
