@@ -47,6 +47,7 @@ var internalFunctions = {
 
 // Syntax: prefix(command) (arguments)
 var commandRegex = /^-([^ ]+) ?(.*)/i;
+var omaeWaMou = /omae(?:.*)wa(?:.*)mou(?:.*)shindeiru/i
 
 client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
@@ -66,7 +67,11 @@ client.on('message', message => {
     } else if (internalFunctions[command]) {
       internalFunctions[command](parameters, message);
     }
+  } else if (omaeWaMou.exec(message.content)) {
+    // Special supercool command
+    message.channel.send("NANI?!");
   }
+  
 });
 
 client.login(_token);
