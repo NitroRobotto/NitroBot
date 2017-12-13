@@ -19,6 +19,7 @@ function Help() {
     +"\n\n**Random Commands:**"
     +"\n\tedge = Crawls in your skin. [Example: -edge, -edgy]"
     +"\n\tmullet = Hail to the king, baby. [Example: -mullet, -badass]"
+    +"\n\thappy = owo [Example: -happy]"
     +"\n\n**Utility Commands:**"
     +"\n\tset \"char\" {stat} {value} = Sets target character's HP to a certain value. [Example: -set \"Potato\" hp 3]"
     +"\n\tstatus \"char\" = Gets the status of the defined character. [Example: -status \"Potato\"";
@@ -36,21 +37,23 @@ var replyFunctions = {
   'edge' : Joke.Edge,
   'edgy' : Joke.Edge,
   'mullet': Joke.Mullet,
-  'badass': Joke.Mullet
-}
+  'badass': Joke.Mullet,
+  'happy': Joke.Happy
+};
 
 var sendFunctions = {
   'help'  : Help,
   'status': Utils.ShowStatus
-}
+};
 
 var internalFunctions = {
   'set'   : Utils.SetStatus
-}
+};
 
 // Syntax: prefix(command) (arguments)
 var commandRegex = /^-([^ ]+) ?(.*)/i;
-var omaeWaMou = /omae(?:.*)wa(?:.*)mou(?:.*)shindeiru/i
+var omaeWaMou = /omae(?:.*)wa(?:.*)mou(?:.*)shindeiru/i;
+var goodBot = /(?:(?:good)|(?:thanks)|(?:domo))(?:.*)bot/i;
 
 client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
@@ -73,6 +76,8 @@ client.on('message', message => {
   } else if (omaeWaMou.exec(message.content)) {
     // Special supercool command
     message.channel.send("NANI?!");
+  } else if (goodBot.exec(message.content)) {
+    message.reply(Joke.Happy());
   }
   
 });

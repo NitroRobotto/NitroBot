@@ -322,6 +322,76 @@ var mulletPhrases = [
     "This shit is getting out of hand!"
 ];
 
+var happyStarters = [
+  "\\*blushes\\*",
+  "\\*pokes index fingers together\\*",
+  "\\*fidgets around\\*",
+  "\\*smiles shyly\\*",
+  "\\*is kawaii\\*",
+  "\\*feels shy\\*",
+  "\\*its face turns red\\*",
+  "\\*wags arms around, eyes closed\\*",
+  "\\*pouts\\*"
+];
+
+var happyPhrases = [
+    "Arigato!",
+    "Nyaaa~!",
+    "Arigato, desu!",
+    "Nya! Bot is happy-des!",
+    "Aww~",
+    "Thanks!",
+    "Aw, thanks~!",
+    "OwO wats dis?"
+];
+
+var happyKamoticon = [
+    "(((o(*ﾟ▽ﾟ*)o)))",
+    "o((*^▽^*))o",
+    "Ｏ(≧▽≦)Ｏ",
+    "o(〃＾▽＾〃)o",
+    "o(^▽^)o",
+    "Ｏ(≧∇≦)Ｏ",
+    "o(≧∇≦o)",
+    "σ(≧ε≦ｏ)",
+    "o(*^▽^*)o",
+    "⌒°(❛ᴗ❛)°⌒",
+    "o(^∀^*)o",
+    "o(^◇^)o",
+    "《《o(≧◇≦)o》》",
+    "o(*≧□≦)o",
+    "o(*>ω<*)o",
+    "(ﾉ･ｪ･)ﾉ",
+    "(/^▽^)/",
+    "(ﾉ´ヮ´)ﾉ*:･ﾟ✧",
+    "(ﾉ≧∀≦)ﾉ",
+    "(ﾉ^ヮ^)ﾉ*:・ﾟ✧",
+    "(/ ‘з’)/",
+    "(۶ꈨຶꎁꈨຶ )۶ʸᵉᵃʰᵎ",
+    "⁽(◍˃̵͈̑ᴗ˂̵͈̑)⁽",
+    "(╯✧∇✧)╯",
+    "Σ(ノ°▽°)ノ",
+    "( ƅ°ਉ°)ƅ",
+    "ヽ(　･∀･)ﾉ",
+    "˭̡̞(◞⁎˃ᆺ˂)◞*✰",
+    "(p^-^)p",
+    "(ﾉ^∇^)ﾉﾟ",
+    "ヽ(〃･ω･)ﾉ",
+    "(۶* ‘ꆚ’)۶”",
+    "（。＞ω＜）。",
+    "（ﾉ｡≧◇≦）ﾉ",
+    "ヾ(｡･ω･)ｼ",
+    "(ﾉ･д･)ﾉ",
+    ".+:｡(ﾉ･ω･)ﾉﾞ",
+    "Σ(*ﾉ´>ω<｡`)ﾉ",
+    "ヾ（〃＾∇＾）ﾉ♪",
+    ".ﾟ☆(ノё∀ё)ノ☆ﾟ.",
+    "⌒ﾟ(❀>◞౪◟<)ﾟ⌒",
+    "ヽ/❀o ل͜ o\\ﾉ",
+    "⤴︎ ε=ε=(ง ˃̶͈̀ᗨ˂̶͈́)۶ ⤴︎",
+    "୧༼✿ ͡◕ д ◕͡ ༽୨"
+]
+
 function phrase(starterList, phraseList) {
     return Utils.GetRandomFromList(starterList)
         + " ***" + Utils.GetRandomFromList(phraseList) + "***";
@@ -335,7 +405,12 @@ function mullet() {
     return phrase(mulletStarters, mulletPhrases);
 }
 
+function happy() {
+    return phrase(happyStarters, happyPhrases) + "\t" + Utils.GetRandomFromList(happyKamoticon);
+}
+
 module.exports = {
     'Edge' : edge,
-    'Mullet': mullet
+    'Mullet': mullet,
+    'Happy': happy
 };
