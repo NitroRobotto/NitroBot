@@ -96,7 +96,10 @@ var edgeStarters = [
     "\\*is a shadow that cannot be seen\\*",
     "\\*is immortal\\*",
     "\\*is immortal and that's very tragic\\*",
-    "\\*looks deadly\\*"
+    "\\*looks deadly\\*",
+    "\\*you realise there is no escape\\*",
+    "\\*has already won\\*",
+    "\\*can never be fefeated\\*"
 ];
 
 var edgePhrases = [
@@ -192,7 +195,11 @@ var edgePhrases = [
     "You activated my trap card.",
     "Hate you, me? Do you hate the ants you step on?",
     "Chaos for the fly is routine for the spider.",
-    "Why should I care for those I kill? Do you care for the bread you eat?"
+    "Why should I care for those I kill? Do you care for the bread you eat?",
+    "You have underestimated my power.",
+    "You underestimate my power.",
+    "Your mistake was underestimating my power.",
+    "There was nothing you could've done to survive."
 ];
 
 var mulletStarters = [
@@ -240,6 +247,16 @@ var mulletStarters = [
     "\\*sits on the bike and turns the handle.\\*",
     "\\*grabs a random girl, kisses her and let her fall over the ground. winks to the camera\\*",
     "\\*takes a bite of a ratburguer. doubts but then nods, grining with satisfaction\\*",
+    "\\*destroys the alien mothership\\*",
+    "\\*explosion in the background\\*",
+    "\\*spits tobacco\\*",
+    "\\*performs an epic landing\\*",
+    "\\*quickdraws\\*",
+    "\\*breaks through a window in the 82nd floor\\*",
+    "\\*stitches a bullet wound\\*",
+    "\\*drinks whiskey. triple. on the rocks\\*",
+    "\\*is the pinnacle of masculinity\\*",
+    "\\*has a magnum revolver\\*"
 ];
 
 var mulletPhrases = [
@@ -282,9 +299,11 @@ var mulletPhrases = [
     "Get to the choppa'!",
     "Aaarrgh! Fuckin' love this country!",
     "Do ya feel lucky, punk?",
+    "Feelin' lucky, punk?",
     "We're gonna need a bigger gun!",
     "Frankly, my dear, I don't give a damn.",
     "Winners don't use drugs.",
+    "Winners don't do drugs!",
     "I'm too old for this shit",
     "They may take our lives, but they'll never take our freedom!",
     "Yeah, baby!",
@@ -299,7 +318,8 @@ var mulletPhrases = [
     "Shaken, not stirred.",
     "I love the smell of napalm in the morning.",
     "Say hello to my little friend!",
-    "Come on! It's just 10 in the morning!"
+    "Come on! It's just 10 in the morning!",
+    "This shit is getting out of hand!"
 ];
 
 function phrase(starterList, phraseList) {
