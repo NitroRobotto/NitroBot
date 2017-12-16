@@ -390,7 +390,36 @@ var happyKamoticon = [
     "ヽ/❀o ل͜ o\\ﾉ",
     "⤴︎ ε=ε=(ง ˃̶͈̀ᗨ˂̶͈́)۶ ⤴︎",
     "୧༼✿ ͡◕ д ◕͡ ༽୨"
-]
+];
+
+var sombreroStarters = [
+    "\\*strokes mustache\\*",
+    "\\*smiles widely\\*",
+    "\\*shakes poncho\\*",
+    "\\*eats burrito\\*",
+    "\\*eats taco\\*",
+    "\\*eats tortilla\\*",
+    "\\*eats guacamole\\*",
+    "\\*puts its hat on its donkey\\*",
+    "\\*draws the sign of the cross\\*",
+    "\\*throws sombrero up in the hair\\*"
+];
+
+var sombreroPhrases = [
+    "Ay ay ay!",
+    "Viva nuestro presidente!",
+    "I should buy a bigger sombrero...",
+    "Mucha gracia, senior.",
+    "Do you want some burrito, amigo?",
+    "Let's go to watch some Chespirito!",
+    "Ay manito, what a time to be alive!",
+    "It's cold out there! Please, take my poncho!",
+    "I can't believe this isn't frijoles!",
+    "Que la virgencita takes care of you.",
+    "This is a good azucarada calaverita!",
+    "You americanos should learn to prepare true tortillas.",
+    "Madre de Dios!"
+];
 
 function phrase(starterList, phraseList) {
     return Utils.GetRandomFromList(starterList)
@@ -409,8 +438,13 @@ function happy() {
     return phrase(happyStarters, happyPhrases) + "\t" + Utils.GetRandomFromList(happyKamoticon);
 }
 
+function sombrero() {
+    return phrase(sombreroStarters, sombreroPhrases);
+}
+
 module.exports = {
     'Edge' : edge,
     'Mullet': mullet,
-    'Happy': happy
+    'Happy': happy,
+    'Sombrero' : sombrero
 };

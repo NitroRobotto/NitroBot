@@ -13,13 +13,14 @@ client.on('ready', () => {
 });
 
 function Help() {
-  return "**Dice Commands:**\n\tddd = Rolls 2d6 and adds them together. [Example: -ddd, -2d6]"
+  return "**Dice Commands:**\n\t2d6 = Rolls 2d6 and adds them together. [Example: -2d6,-ddd]"
     +"\n\tnova {n} = Rolls n Nova Dice. [Example: -nova, -nova 7]"
     +"\n\tfu {n} = Rolls n Freeform Unlimited dice. [Example: -fu, -fu 2]"
     +"\n\n**Random Commands:**"
     +"\n\tedge = Crawls in your skin. [Example: -edge, -edgy]"
     +"\n\tmullet = Hail to the king, baby. [Example: -mullet, -badass]"
     +"\n\thappy = owo [Example: -happy]"
+    +"\n\tsombrero = Ay compadre [Example: -sombrero, -ay, -ayayay]"
     +"\n\n**Utility Commands:**"
     +"\n\tset \"char\" {stat} {value} = Sets target character's HP to a certain value. [Example: -set \"Potato\" hp 3]"
     +"\n\tstatus \"char\" = Gets the status of the defined character. [Example: -status \"Potato\"";
@@ -38,7 +39,10 @@ var replyFunctions = {
   'edgy' : Joke.Edge,
   'mullet': Joke.Mullet,
   'badass': Joke.Mullet,
-  'happy': Joke.Happy
+  'happy': Joke.Happy,
+  'sombrero': Joke.Sombrero,
+  'ayayay': Joke.Sombrero,
+  'ay': Joke.Sombrero
 };
 
 var sendFunctions = {
