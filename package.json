@@ -1,0 +1,27 @@
+{
+  "name": "NitroBot",
+  "version": "1.0.0",
+  "description": "NodeJS Discord Bot",
+  "main": "nitrobot.js",
+  "dependencies": {
+    "discord.js": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NitroRobotto/NitroBot.git"
+  },
+  "keywords": [
+    "discord",
+    "bot"
+  ],
+  "author": "NitroRobotto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NitroRobotto/NitroBot/issues"
+  },
+  "homepage": "https://github.com/NitroRobotto/NitroBot#readme"
+}
