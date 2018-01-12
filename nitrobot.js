@@ -58,6 +58,8 @@ var internalFunctions = {
 var commandRegex = /^-([^ ]+) ?(.*)/i;
 var omaeWaMou = /omae(?:.*)wa(?:.*)mou(?:.*)shindeiru/i;
 var goodBot = /(?:(?:good)|(?:thanks)|(?:domo))(?:.*)bot/i;
+var ayy = /^ayy+/i;
+var rip = /r.*in.*spaguet+i/i;
 
 client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
@@ -82,6 +84,10 @@ client.on('message', message => {
     message.channel.send("NANI?!");
   } else if (goodBot.exec(message.content)) {
     message.reply(Joke.Happy());
+  } else if (rip.exec(message.content)) {
+    message.channel.send("never forgetti");
+  } else if (ayy.exec(message.content)) {
+    message.channel.send("lmao");
   }
   
 });
