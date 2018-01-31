@@ -59,7 +59,7 @@ var commandRegex = /^-([^ ]+) ?(.*)/i;
 var omaeWaMou = /omae(?:.*)wa(?:.*)mou(?:.*)shindeiru/i;
 var goodBot = /(?:(?:good)|(?:thanks)|(?:domo))(?:.*)bot/i;
 var ayy = /^ayy+/i;
-var rip = /r.*in.*spaguet+i/i;
+var rip = /r.*in.*spag.+ti/i;
 
 client.on('message', message => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
