@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 var Nova    = require('./modules/nova');
+var Fate    = require('./modules/fate');
 var FU      = require('./modules/fu');
 var DDD     = require('./modules/ddd');
 var Utils   = require('./modules/utils');
@@ -42,7 +43,8 @@ var replyFunctions = {
   'happy': Joke.Happy,
   'sombrero': Joke.Sombrero,
   'ayayay': Joke.Sombrero,
-  'ay': Joke.Sombrero
+  'ay': Joke.Sombrero,
+  'fate': Fate
 };
 
 var sendFunctions = {
