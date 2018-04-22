@@ -7,6 +7,8 @@ var FU      = require('./modules/fu');
 var DDD     = require('./modules/ddd');
 var Utils   = require('./modules/utils');
 var Joke    = require('./modules/joke');
+var Dice    = require('./modules/dice');
+var Various = require('./modules/various');
 var _token  = require('./token');
 
 client.on('ready', () => {
@@ -44,12 +46,14 @@ var replyFunctions = {
   'sombrero': Joke.Sombrero,
   'ayayay': Joke.Sombrero,
   'ay': Joke.Sombrero,
-  'fate': Fate
+  'fate': Fate,
+  'butts': Dice.Butts
 };
 
 var sendFunctions = {
   'help'  : Help,
-  'status': Utils.ShowStatus
+  'status': Utils.ShowStatus,
+  'bigtext': Various.BigText
 };
 
 var internalFunctions = {
