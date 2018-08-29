@@ -39,12 +39,12 @@ module.exports = function (args, message) {
   
   results = DoFURolls(diceAmount, keepHighest);
   
-  var reply = "Rolling [" +  diceAmount + "] " + (keepHighest ? "" : "negative ") + "FU dice. Your result:\n\n`";
+  var reply = "Rolling [" +  diceAmount + "] " + (keepHighest ? "" : "negative ") + "FU dice: `";
   
   for (var i = 0; i < results.dice.length; ++i) {
     reply += results.dice[i] + " "; 
   }
-  reply += "`\n\n"+results.icon+"\n\n**"+results.str+"**";
+  reply += "`\n\n"+results.icon+"** - "+results.str+"**";
   
   return reply;
 }
