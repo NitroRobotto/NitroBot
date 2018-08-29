@@ -34,7 +34,7 @@ module.exports = function NovaDice(message) {
     
     results = DoNovaRolls(diceAmount);
     
-    var response = "**Rolling **[" + diceAmount + "]** Nova Dice:**\n\n" + results.str;
+    var response = "**Rolling **[" + diceAmount + "]** Nova Dice:**\n" + results.str;
     var successes = results.successes;
     var novas = results.novas;
     
@@ -47,13 +47,13 @@ module.exports = function NovaDice(message) {
       
       results = DoNovaRolls(currentNovas);
       
-      response += "\n\n**Rolling **[" + currentNovas + "]** Novas";
+      response += "\n**Rolling **[" + currentNovas + "]** Novas";
       
       for (var i = 0; i < explosions; ++i) {
         response += "!";
       }
       
-      response += "**\n\n" + results.str;
+      response += "**\n" + results.str;
       
       successes += results.successes;
       novas += results.novas;
@@ -61,17 +61,7 @@ module.exports = function NovaDice(message) {
       currentNovas = results.novas;
     }
     
-    if (successes == 0) {
-      response += "\n\nBetter luck next time!";
-    } else if (successes == 1) {
-      response += "\n\nThat's **1 Success**!";
-    } else {
-      response += "\n\nThat's **" + successes +  " Successes**!";
-    }
-    
-    if (novas > 0) {
-      response += " You got **" + novas + " Novas** in total!";
-    }
+    response += "\n\n**Sucesses: **["+successes+"] | **Novas: **["+novas+"]"
     
   return response;
 }
