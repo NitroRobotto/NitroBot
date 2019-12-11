@@ -442,9 +442,23 @@ function sombrero() {
     return phrase(sombreroStarters, sombreroPhrases);
 }
 
+var vowelLowercaseRegex = /[aeiouáéíóúàèìòùâêîôûäëïöü]/gm;
+var vowelUppercaseRegex = /[AEIOUÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÄËÏÖÜ]/gm;
+var vowelsLowercase = ["a", "e", "i", "o", "u"];
+var vowelsUppercase = ["A", "E", "I", "O", "U"];
+
+function replaceVowels(args, message) {
+    var vowel = Math.floor((Math.random() * 5));
+    var reply = args.replace(vowelLowercaseRegex, vowelsLowercase[vowel]);
+    reply = reply.replace(vowelUppercaseRegex, vowelsUppercase[vowel]);
+    
+    return reply;
+}
+
 module.exports = {
     'Edge' : edge,
     'Mullet': mullet,
     'Happy': happy,
-    'Sombrero' : sombrero
+    'Sombrero' : sombrero,
+    'Vowels' : replaceVowels
 };
