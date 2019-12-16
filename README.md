@@ -34,6 +34,8 @@ module.exports = {
   'help': "Help Message with a list of what this module does and what commands it has."
 }
 ```
+4. Open nitrobot.js and add the name of your module file (without the .js termination) to the "modules" list.
+5. Start the bot and try it out!
 
 *  The command is the key in the dictionary.
 *  Functions in 'reply' will @ the user who triggered the command.
