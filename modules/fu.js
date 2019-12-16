@@ -32,13 +32,12 @@ function DoFURolls(amount, keepHighest) {
   }
 }
 
-module.exports = function (args, message) {
+function FU(args, message) {
   var results = diceRegex.exec(args);
   var diceAmount = results[2] ? Math.min(results[2], 10) : 1;
   var keepHighest = results[1] === undefined ? true : false;
   
   results = DoFURolls(diceAmount, keepHighest);
-  
   var reply = "Rolling [" +  diceAmount + "] " + (keepHighest ? "" : "negative ") + "FU dice: `";
   
   for (var i = 0; i < results.dice.length; ++i) {
@@ -47,4 +46,26 @@ module.exports = function (args, message) {
   reply += "`\n\n"+results.icon+"** - "+results.str+"**";
   
   return reply;
+}
+
+function FU_Alternative(message) {
+  return FU("1", message);
+}
+
+var questionRegex = /^Hey NitroBot, +¿?.+\?/i;
+
+module.exports = {
+  'reply': {
+      'fu' :  FU,
+  },
+  'send': {
+    
+  },
+  'internal': {
+    
+  },
+  'direct': [
+    {'regex': questionRegex, 'function': FU_Alternative, 'type': 'reply'}
+  ],
+  'help' : "fu {n} = Rolls n Freeform Unlimited dice. [Example: -fu, -fu 2]"
 }

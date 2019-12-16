@@ -22,10 +22,8 @@ function DoNovaRolls(amount) {
     return {"str": response, "novas": novas, "successes": successes};
 }
 
-
-
-module.exports = function NovaDice(message) {
-    var results = diceRegex.exec(message);
+function NovaDice(args, message) {
+    var results = diceRegex.exec(args);
     var diceAmount = results[1] ? results[1] : 1;
     
     if (diceAmount > 20) {
@@ -35,6 +33,7 @@ module.exports = function NovaDice(message) {
     results = DoNovaRolls(diceAmount);
     
     var response = "**Rolling **[" + diceAmount + "]** Nova Dice:**\n" + results.str;
+    
     var successes = results.successes;
     var novas = results.novas;
     
@@ -64,4 +63,14 @@ module.exports = function NovaDice(message) {
     response += "\n\n**Sucesses: **["+successes+"] | **Novas: **["+novas+"]"
     
   return response;
+}
+
+module.exports = {
+  'reply': {
+      'nova' : NovaDice
+  },
+  'send': {},
+  'internal': {},
+  'direct': [],
+  'help': "nova {n} = Rolls n Nova Dice. [Example: -nova, -nova 7]."
 }

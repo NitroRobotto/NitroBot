@@ -455,10 +455,42 @@ function replaceVowels(args, message) {
     return reply;
 }
 
+function BigText(text) {
+    text = text.toLowerCase();
+    var output = ":arrow_right:  ";
+    for(var i = 0; i < text.length; ++i) {
+        if (isLetter(text[i])) {
+            output += ":regional_indicator_" + text[i] + ": ";    
+        } else if (text[i] == ' ') {
+            output += "   ";
+        }
+    }
+    return output + " :arrow_left:";
+}
+
+function isLetter(str) {
+  return str.length === 1 && str.match(/[a-z]/i);
+}
+
 module.exports = {
-    'Edge' : edge,
-    'Mullet': mullet,
-    'Happy': happy,
-    'Sombrero' : sombrero,
-    'Vowels' : replaceVowels
-};
+  'reply': {
+      'edge' : edge,
+      'edgy' : edge,
+      'mullet' : mullet,
+      'badass' : mullet,
+      'happy' : happy,
+      'sombrero' : sombrero
+  },
+  'send': {
+      'vowels': replaceVowels,
+      'bigtext': BigText
+  },
+  'internal': {},
+  'direct': [
+    {'regex':  /^omae(?:.*)wa(?:.*)mou(?:.*)shindeiru/i, 'function': (message) => {return "NANI?!";}, 'type': 'send'},
+    {'regex':  /^(?:(?:good)|(?:thanks)|(?:domo))(?:.*)bot/i, 'function': happy, 'type': 'reply'},
+    {'regex':  /^ayy+/i, 'function': (message) => {return "lmao";}, 'type': 'send'},
+    {'regex':  /r.+in.+spag.+ti/i, 'function': (message) => {return "never forgetti";}, 'type': 'send'}
+  ],
+  'help': "These say a phrase: -edge, -edgy, -mullet, -badass, -happy, -sombrero\nUse these ones in the form of -{command} {regularPhaser}: -vowels, -bigtext"
+}
