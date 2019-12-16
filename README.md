@@ -39,7 +39,7 @@ module.exports = {
 
 *  The command is the key in the dictionary.
 *  Functions in 'reply' will @ the user who triggered the command.
-*  Functions in 'send' is the same as 'reply' but it won't @ the user.
+*  Functions in 'send' are the same as 'reply' but it won't @ the user.
 *  Functions in 'internal' will NOT send any message. The 'return' string here is ignored.
 *  Functions in 'direct' are special: Any message that is not a command will be parsed against all 'direct' regexes until one hits. If it does, the function will be triggered (only the message is passed and only as the first parameter as of now). Type can be 'send' or 'reply'.
 *  The string in 'help' will print when the user uses the -help command.
