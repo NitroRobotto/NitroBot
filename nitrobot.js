@@ -73,18 +73,19 @@ client.on('message', message => {
       internalFunctions[command](parameters, message);
     }
   } else {
-    directMessages.forEach((direct) => {
+    directMessages.some((direct) => {
       result = direct.regex.exec(message.content);
       if (result) {
         switch(direct.type) {
           case 'send':
             message.channel.send(direct.function(message));
-            break;
+            return true;
           case 'reply':
             message.reply(direct.function(message));
-            break;
+            return true;
         }
       }
+      return false;
     });
   }
   
