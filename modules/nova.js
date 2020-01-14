@@ -1,25 +1,35 @@
 var diceRegex = /^ *(\d+)?/i;
 
 function DoNovaRolls(amount) {
-  var response = "";
   var dice;
+  var string = "";
   var novas = 0;
   var successes = 0;
   for (var i = 0; i < amount; ++i) {
       dice = Math.random();
       if (dice > 0.79) { //~6 in 1d6
-        response += ":eight_spoked_asterisk: ";
+        string += ":eight_spoked_asterisk: ";
         ++novas;
         ++successes;
       } else if (dice > 0.495) { //~4+ in 1d6
-        response += ":white_check_mark: ";
+        string += ":white_check_mark: ";
         ++successes;
-      } else { //3- in 1d6
-        response += ":white_large_square: ";
+      } else {
+        string += ":white_large_square: "
       }
     }
     
-    return {"str": response, "novas": novas, "successes": successes};
+    var strings = [{"dice": amount, "str": string}];
+    
+    // Nova re-rolls
+    if (novas > 0) {
+      var explosions = DoNovaRolls(novas);
+      novas += explosions["novas"];
+      successes += explosions["successes"];
+      strings = strings.concat(explosions["rolls"]);
+    }
+    
+    return {"novas": novas, "successes": successes, "rolls": strings};
 }
 
 function NovaDice(args, message) {
@@ -32,35 +42,17 @@ function NovaDice(args, message) {
     
     results = DoNovaRolls(diceAmount);
     
-    var response = "**Rolling **[" + diceAmount + "]** Nova Dice:**\n" + results.str;
+    var response = "";
     
-    var successes = results.successes;
-    var novas = results.novas;
-    
-    var currentNovas = novas;
-    
-    var explosions = 0;
-    
-    while (currentNovas > 0) {
-      ++explosions;
-      
-      results = DoNovaRolls(currentNovas);
-      
-      response += "\n**Rolling **[" + currentNovas + "]** Novas";
-      
-      for (var i = 0; i < explosions; ++i) {
+    for (var explosion = 0; explosion < results.rolls.length; ++explosion) {
+      response += "\n**Rolling **["+ results.rolls[explosion].dice + "]** Nova Dice";
+      for (var i = 0; i < explosion; ++i) {
         response += "!";
       }
-      
-      response += "**\n" + results.str;
-      
-      successes += results.successes;
-      novas += results.novas;
-      
-      currentNovas = results.novas;
+      response += "**\n" + results.rolls[explosion].str;
     }
     
-    response += "\n\n**Sucesses: **["+successes+"] | **Novas: **["+novas+"]"
+    response += "\n\n**Sucesses: **["+results.successes+"] | **Novas: **["+results.novas+"]"
     
   return response;
 }
