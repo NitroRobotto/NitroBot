@@ -99,7 +99,9 @@ var edgeStarters = [
     "\\*looks deadly\\*",
     "\\*you realise there is no escape\\*",
     "\\*has already won\\*",
-    "\\*can never be fefeated\\*"
+    "\\*can never be fefeated\\*",
+    "\\*its fur tips become black\\*",
+    "\\*comes out of a dark portal\\*"
 ];
 
 var edgePhrases = [
@@ -199,7 +201,9 @@ var edgePhrases = [
     "You have underestimated my power.",
     "You underestimate my power.",
     "Your mistake was underestimating my power.",
-    "There was nothing you could've done to survive."
+    "There was nothing you could've done to survive.",
+    "Whose our target?",
+    "its not a phase, mom"
 ];
 
 var mulletStarters = [
