@@ -14,7 +14,8 @@ var modules = [
   'nova',
   'fu',
   'ddd',
-  'joke'
+  'joke',
+  'dicebuild'
 ];
 
 /*****************
