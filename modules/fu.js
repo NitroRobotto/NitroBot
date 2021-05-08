@@ -45,6 +45,8 @@ function FU(args, message) {
   }
   reply += "`\n\n"+results.icon+"** - "+results.str+"**";
   
+  message.delete({ timeout: 100 }).catch((reason) => {});
+  
   return reply;
 }
 

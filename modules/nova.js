@@ -54,7 +54,9 @@ function NovaDice(args, message) {
     
     response += "\n\n**Sucesses: **["+results.successes+"] | **Novas: **["+results.novas+"]"
     
-  return response;
+	message.delete({ timeout: 100 }).catch((reason) => {});
+	
+	return response;
 }
 
 module.exports = {
