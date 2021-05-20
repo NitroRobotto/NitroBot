@@ -1,11 +1,17 @@
 var utils = require('./utils');
-var diceRegex = /^ *(\d+) (.*)/i;
+var diceRegex = /^ *(\d+)?[ d](.*)/i;
+var alternateRegex = /^ *(.*)/i;
 
 function rollFaces(params, msg) {
 	var results = diceRegex.exec(params);
-	if (results == null || results.length < 3)
+	if (results == null || results.length < 2)
 	{
-		return "Insufficient parameters. The format is 1 number followed by any number of faces, separated by a spaces or semicolons.";
+		results = alternateRegex.exec(params);
+		if (results == null || results.length < 1)
+			return "Insufficient parameters. The format is -dicebuild [number] [faces], space or semicolon separated.";
+		
+		results[2] = results[1]
+		results[1] = 1
 	}
 	
 	var diceAmount = results[1];
@@ -23,15 +29,15 @@ function rollFaces(params, msg) {
 		return "You need to specify at least two faces.";
 	}
 	
-	results = "**Rolling **[" + diceAmount + "] **dice with the following faces:** ";
+	results = "**Dicebuild: **" + diceAmount + "  ×**「**";
 	
-	faces.forEach((item) => { results += "[" + item + "], "; });
+	faces.forEach((item) => { results += item + ";"; });
 	
-	results = results.slice(0,-2) + "\n\n";
+	results = results.slice(0,-1) + "**」**\n***Results:***";
 	
 	while (diceAmount-- > 0)
 	{
-		results += "[" + utils.GetRandomFromList(faces) + "] ";
+		results += "「" + utils.GetRandomFromList(faces) + "」";
 	}
 	
 	msg.delete({ timeout: 100 }).catch((reason) => {});
