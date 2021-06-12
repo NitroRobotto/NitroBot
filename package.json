@@ -4,7 +4,7 @@
   "description": "NodeJS Discord Bot",
   "main": "nitrobot.js",
   "dependencies": {
-    "discord.js": "^12.5.1",
+    "discord.js": "^12.5.3",
     "uws": "^200.0.0"
   },
   "devDependencies": {},
