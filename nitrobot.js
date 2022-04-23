@@ -15,7 +15,8 @@ var modules = [
   'fu',
   'ddd',
   'joke',
-  'dicebuild'
+  'dicebuild',
+  'fabula'
 ];
 
 /*****************

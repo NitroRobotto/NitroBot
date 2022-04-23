@@ -59,7 +59,17 @@ function ShowCharacterStatus(character) {
   return response;
 }
 
+const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+
 module.exports = {
+  
+  'clamp' : clamp,
+  
+  'displayPercent' : (percent) => `${(percent * 100).toFixed(1)}%`,
+
+  'roll' : function(faces) {
+    return 1 + Math.floor((Math.random() * faces));
+  },
   
     'D6' : function () {
       var dice = 1 + Math.floor((Math.random() * 6));
