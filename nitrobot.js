@@ -17,7 +17,6 @@ var modules = [
   'joke',
   'dicebuild',
   'fabula',
-  'novaCrit',
   'diceCustom'
 ];
 
