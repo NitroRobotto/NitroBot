@@ -1,51 +1,48 @@
 const roll = (dice, faces) => {
-    const total = {
+    const result = {
         die: [],
         total: 0
     }
 
     const dice_remaining = Math.min(dice, 20);
     for (let i = dice_remaining; i > 0; i--) {
-        const die = 1 + Math.random() % faces;
-        total.die.push(die);
-        total.total += die;
+        const die = Math.floor(Math.random() * (faces - 1)) + 1;
+        result.die.push(die);
+        result.total += die;
     }
 
-    return total;
-};
-
-const counter = (str) => {
-    return str.split('').reduce((total, letter) => {
-        total[letter] ? total[letter]++ : total[letter] = 1;
-        return total;
-    }, {});
+    return result;
 };
 
 const _evaluate_factor = (factor) => {
-    let results;
-    const countLetters = counter(factor);
-    if (countLetters.d == undefined) return {die: [], total: (parseInt(factor) != NaN ? parseInt(factor) : -1)};
-    
-    const rollDice = factor.split("d");
-    switch (roll.size()) {
-        case 0:
-            results = roll(0, 0);
-            break;
-        case 1:
-            results = roll(1, parseInt(rollDice[0]));
-            break;
-        default:
-            results = roll(parseInt(rollDice[0]), parseInt(rollDice[1]));
-            break;
+    let result = {
+        die: [],
+        total: 0
     }
 
-    return results;
+    if (factor.length > 1 && factor.includes('d')) {
+        const rollDice = factor.split("d");
+        if (rollDice.length > 1)
+        {
+            result = roll(parseInt(rollDice[0]), parseInt(rollDice[1]));
+        }
+    } else {
+        result.total = parseInt(factor);
+        if (isNaN(result.total)) result.total = 0;
+    }
+
+    return result;
+}
+
+const _add_faces = (term, die) => {
+    if (die.length < 1) return ""
+    else return `[${term} = ${die}]`;
 }
 
 const _evaluate_term = (term) => {
-    const terms = term.split("*", false);
+    const terms = term.split("*");
 
-    if (terms.size() == 0) return _evaluate_factor("");
+    if (terms.length == 0) return _evaluate_factor("");
 
     let rollDice = _evaluate_factor(terms[0]);
     const result = {
@@ -53,43 +50,46 @@ const _evaluate_term = (term) => {
         faces: []
     };
 
-    if (rollDice.die == "") result.faces.push({"roll": terms[0], "die": rollDice.die});
+    if (rollDice.die.length > 0) result.faces.push(_add_faces(terms[0], rollDice.die));
 
-    for (let i = 0; (i < terms.size() && i <= 10); i++) {
+    for (let index = 1; (index < terms.length && index <= 10); index++) {
         rollDice = _evaluate_factor(terms[index])
-        result.total *= roll.total;
+        result.total *= rollDice.total;
 
-        if (rollDice.die == "") result.faces.push({"roll": terms[index], "die": rollDice.die});
+        if (rollDice.die.length > 0) result.faces.push(_add_faces(terms[index], rollDice.die));
     }
 
     return result;
 }
 
-const evaluate = () => {
+function evaluate(params, msg) {
     const total = {
         total: 0,
         faces: []
     };
+	
+	params = params.replace(' ', '');
 
     let max_terms = 10;
 
-    for (const term of text.split("+", false)) {
+    for (const term of params.split("+")) {
         const roll = _evaluate_term(term);
         total.total += roll.total;
-        total.faces.concat(roll.faces);
+        total.faces = total.faces.concat(roll.faces);
         max_terms -= 1;
         if (max_terms == 0) break;
     };
 
-    return total;
+    return "custom dice: " + params + " = " + total.total + ", " + total.faces;
 }
 
 module.exports = {
   'reply': {
-      'diceCustom' : evaluate
+      'dicecustom' : evaluate,
+      'roll' : evaluate
   },
   'send': {},
   'internal': {},
   'direct': [],
-  'help': "2d6 = Rolls 2d6 and adds them together. [Example: -2d6,-ddd]."
+  'help': "-customDice [string]"
 }
