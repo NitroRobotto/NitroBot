@@ -16,8 +16,7 @@ var modules = [
   'ddd',
   'joke',
   'dicebuild',
-  'fabula',
-  'novaCrit'
+  'fabula'
 ];
 
 /*****************
