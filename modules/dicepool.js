@@ -4,11 +4,11 @@ const diceRegex = /^ *(\d+) *(\d*) *(\d*)/i;
 function rollPool(faces) {
     let results = "";
     while (faces > 0) {
-        let roll = utils.D6();
+        const roll = utils.D6();
         if (roll.val < 6) faces -= 1;
         results += `${roll.str} `;
     }
-    return results;
+    return results.trim();
 }
 
 function rollDicePool(params, msg) {
@@ -22,10 +22,10 @@ function rollDicePool(params, msg) {
 	let results = `**Rolling dice pools:** ${params}\n\n`;
     results += `:muscle: **:** ${rollPool(poolOne)}\n`;
     if (poolTwo !== null) {
-        results += `:heart: **:** ${rollPool(poolTwo)}\n`;
+        results += `:yellow_heart: **:** ${rollPool(poolTwo)}\n`;
     }
     if (poolThree !== null) {
-        results += `:bulb: **:** ${rollPool(poolThree)}\n`;
+        results += `:bulb: **:** ${rollPool(poolThree)}`;
     }
 	
 	msg.delete({ timeout: 100 }).catch((reason) => {});
@@ -46,5 +46,5 @@ module.exports = {
   'direct': [
       
     ],
-  'help': "dicepool {body} {heart} {mind}: Roll your dice pools. If heart or mind are missing, the result will be a generic dice pool."
+  'help': "dicepool {body} {heart} {mind}: Roll your dice pools. You may roll with just one or two parameters."
 }

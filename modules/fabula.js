@@ -1,9 +1,8 @@
-var utils = require('./utils');
-
-var diceRegex = /^ *d?(\d+) *d?(\d+) *(.*)/i;
+const utils = require('./utils');
+const diceRegex = /^ *d?(\d+) *d?(\d+) *(.*)/i;
 
 function FabulaCrit(args, message) {
-  let results = diceRegex.exec(args);
+  const results = diceRegex.exec(args);
   if (results.length < 2) {
     return "Fabula Rolls require two dice (e.g. ``fabula d6 d8``)."
   }
@@ -18,7 +17,7 @@ function FabulaCrit(args, message) {
   let hard = 0; //13+
   let veryHard = 0; //16+
 
-  let possibilities = bigDice*smallDice;
+  const possibilities = bigDice*smallDice;
 
   for (let diceA = 1; diceA <= bigDice; ++diceA) {
     for (let diceB = 1; diceB <= smallDice; ++diceB) {
@@ -51,21 +50,21 @@ function FabulaCrit(args, message) {
         "\n\t- Very Hard Task: " + utils.displayPercent(veryHard/possibilities);
 }
 function FabulaRoll(args, message) {
-  var results = diceRegex.exec(args);
+  const results = diceRegex.exec(args);
   if (results.length < 2) {
     return "Fabula Rolls require two dice (e.g. ``fabula d6 d8``)."
   }
-  var firstDiceFaces = utils.clamp(results[1], 2, 20)
-  var secondDiceFaces = utils.clamp(results[2], 2, 20)
+  const firstDiceFaces = utils.clamp(results[1], 2, 20)
+  const secondDiceFaces = utils.clamp(results[2], 2, 20)
 
-  var firstDice = utils.roll(firstDiceFaces);
-  var secondDice = utils.roll(secondDiceFaces);
-  var total = firstDice + secondDice
-  var critical = (firstDice == secondDice) && (firstDice >= 6)
-  var botch = (firstDice == 1) && (secondDice == 1)
+  const firstDice = utils.roll(firstDiceFaces);
+  const secondDice = utils.roll(secondDiceFaces);
+  const total = firstDice + secondDice
+  const critical = (firstDice == secondDice) && (firstDice >= 6)
+  const botch = (firstDice == 1) && (secondDice == 1)
 
   // Header
-  var reply = "Rolled Fabula Ultima dice (d"+firstDiceFaces+" + d"+secondDiceFaces+"): " + results[3] + "\n";
+  let reply = "Rolled Fabula Ultima dice (d"+firstDiceFaces+" + d"+secondDiceFaces+"): " + results[3] + "\n";
 
   // Dice
   if (critical || botch) reply += "\t\t\t【**" +  firstDice + "**】+【**" + secondDice + "**】= **" + total + "**\n" 

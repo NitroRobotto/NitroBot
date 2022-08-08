@@ -1,11 +1,11 @@
-var utils = require('./utils');
-
-var diceRegex = /^ *(-)?(\d+)?/i;
+const utils = require('./utils');
+const diceRegex = /^ *(-)?(\d+)?/i;
+const questionRegex = /^Hey NitroBot, +¿?.+\?/i;
 
 function DoFURolls(amount, keepHighest) {
-  var result = keepHighest ? 1 : 6;
-  var allDice = [];
-  var current;
+  let result = keepHighest ? 1 : 6;
+  const allDice = [];
+  let current;
   for (var i = 0; i < amount; ++i) {
     current = utils.D6();
     allDice.push(current.val);
@@ -33,12 +33,12 @@ function DoFURolls(amount, keepHighest) {
 }
 
 function FU(args, message) {
-  var results = diceRegex.exec(args);
-  var diceAmount = results[2] ? Math.min(results[2], 10) : 1;
-  var keepHighest = results[1] === undefined ? true : false;
+  let results = diceRegex.exec(args);
+  const diceAmount = results[2] ? Math.min(results[2], 10) : 1;
+  const keepHighest = results[1] === undefined ? true : false;
   
   results = DoFURolls(diceAmount, keepHighest);
-  var reply = "Rolling [" +  diceAmount + "] " + (keepHighest ? "" : "negative ") + "FU dice: `";
+  let reply = "Rolling [" +  diceAmount + "] " + (keepHighest ? "" : "negative ") + "FU dice: `";
   
   for (var i = 0; i < results.dice.length; ++i) {
     reply += results.dice[i] + " "; 
@@ -53,8 +53,6 @@ function FU(args, message) {
 function FU_Alternative(message) {
   return FU("1", message);
 }
-
-var questionRegex = /^Hey NitroBot, +¿?.+\?/i;
 
 module.exports = {
   'reply': {

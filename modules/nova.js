@@ -41,9 +41,9 @@ function NovaQuestion(amount, critRange) {
 }
 
 function NovaDiceCrit(args, message) {
-    let regexResult = diceRegex.exec(args);
-    let diceAmount = regexResult[1] ? regexResult[1] : 1;
-    let critRange = regexResult[2] ? Math.max(2, regexResult[2]) : 6;
+    const regexResult = diceRegex.exec(args);
+    const diceAmount = regexResult[1] ? regexResult[1] : 1;
+    const critRange = regexResult[2] ? Math.max(2, regexResult[2]) : 6;
 
     if (diceAmount > 20) {
       return "No more than 20 dice, please!\nIf you're curious, you would've probably obtained around " + Math.round(diceAmount * 0.5) + " Successes and " + Math.round(diceAmount * 0.19) + " Novas.";

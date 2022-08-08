@@ -1,9 +1,9 @@
-var utils = require('./utils');
+const utils = require('./utils');
 
 module.exports = function (args, message) {
-  var result = "";
-  var total = 0;
-  var current;
+  let result = "";
+  let total = 0;
+  let current;
   for (var i = 0; i < 4; ++i) {
     current = utils.D6().val;
     switch (current) {

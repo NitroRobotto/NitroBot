@@ -1,6 +1,6 @@
-var Utils = require('./utils');
+const Utils = require('./utils');
 
-var edgeStarters = [
+const edgeStarters = [
     "\\*teleports behind you\\*",
     "\\*teleports behind you and draws a katana\\*",
     "\\*draws katana\\*",
@@ -104,7 +104,7 @@ var edgeStarters = [
     "\\*comes out of a dark portal\\*"
 ];
 
-var edgePhrases = [
+const edgePhrases = [
     "I am death. You are merely still living.",
     "Death was my begining: It will be your end.",
     "You're already dead.",
@@ -206,7 +206,7 @@ var edgePhrases = [
     "its not a phase, mom"
 ];
 
-var mulletStarters = [
+const mulletStarters = [
     "\\*looks at you serious, shaking his head\\*",
     "\\*falls from the air duct covered in dust and dirt\\*",
     "\\*flies away hanging from a helicopter\\*",
@@ -263,7 +263,7 @@ var mulletStarters = [
     "\\*has a magnum revolver\\*"
 ];
 
-var mulletPhrases = [
+const mulletPhrases = [
     "I AM STRONG!",
     "I WILL KILL YOU DEAD WITH MY MUSLCES!",
     "AAAAAARGH!",
@@ -326,7 +326,7 @@ var mulletPhrases = [
     "This shit is getting out of hand!"
 ];
 
-var happyStarters = [
+const happyStarters = [
   "\\*blushes\\*",
   "\\*pokes index fingers together\\*",
   "\\*fidgets around\\*",
@@ -338,7 +338,7 @@ var happyStarters = [
   "\\*pouts\\*"
 ];
 
-var happyPhrases = [
+const happyPhrases = [
     "Arigato!",
     "Nyaaa~!",
     "Arigato, desu!",
@@ -349,7 +349,7 @@ var happyPhrases = [
     "OwO wats dis?"
 ];
 
-var happyKamoticon = [
+const happyKamoticon = [
     "(((o(*ﾟ▽ﾟ*)o)))",
     "o((*^▽^*))o",
     "Ｏ(≧▽≦)Ｏ",
@@ -396,7 +396,7 @@ var happyKamoticon = [
     "୧༼✿ ͡◕ д ◕͡ ༽୨"
 ];
 
-var sombreroStarters = [
+const sombreroStarters = [
     "\\*strokes mustache\\*",
     "\\*smiles widely\\*",
     "\\*shakes poncho\\*",
@@ -409,7 +409,7 @@ var sombreroStarters = [
     "\\*throws sombrero up in the hair\\*"
 ];
 
-var sombreroPhrases = [
+const sombreroPhrases = [
     "Ay ay ay!",
     "Viva nuestro presidente!",
     "I should buy a bigger sombrero...",
@@ -446,14 +446,14 @@ function sombrero() {
     return phrase(sombreroStarters, sombreroPhrases);
 }
 
-var vowelLowercaseRegex = /[aeiouáéíóúàèìòùâêîôûäëïöü]/gm;
-var vowelUppercaseRegex = /[AEIOUÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÄËÏÖÜ]/gm;
-var vowelsLowercase = ["a", "e", "i", "o", "u"];
-var vowelsUppercase = ["A", "E", "I", "O", "U"];
+const vowelLowercaseRegex = /[aeiouáéíóúàèìòùâêîôûäëïöü]/gm;
+const vowelUppercaseRegex = /[AEIOUÁÉÍÓÚÀÈÌÒÙÂÊÎÔÛÄËÏÖÜ]/gm;
+const vowelsLowercase = ["a", "e", "i", "o", "u"];
+const vowelsUppercase = ["A", "E", "I", "O", "U"];
 
 function replaceVowels(args, message) {
-    var vowel = Math.floor((Math.random() * 5));
-    var reply = args.replace(vowelLowercaseRegex, vowelsLowercase[vowel]);
+    const vowel = Math.floor((Math.random() * 5));
+    let reply = args.replace(vowelLowercaseRegex, vowelsLowercase[vowel]);
     reply = reply.replace(vowelUppercaseRegex, vowelsUppercase[vowel]);
     
     return reply;
@@ -461,7 +461,7 @@ function replaceVowels(args, message) {
 
 function BigText(text) {
     text = text.toLowerCase();
-    var output = ":arrow_right:  ";
+    let output = ":arrow_right:  ";
     for(var i = 0; i < text.length; ++i) {
         if (isLetter(text[i])) {
             output += ":regional_indicator_" + text[i] + ": ";    

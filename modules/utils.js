@@ -1,14 +1,14 @@
-var _charData = {};
+const _charData = {};
 
-var statusRegex = /^ *"?([^"]*)/i;
-var setRegex = /^ *"([^"]+)" ([^ ]+) (.+)/i;
+const statusRegex = /^ *"?([^"]*)/i;
+const setRegex = /^ *"([^"]+)" ([^ ]+) (.+)/i;
 
 function GetRandomFromList(list) {
   return list[Math.floor(Math.random() * list.length)];
 }
 
 function RemoveItemFromList(arr, value) {
-  var index = arr.indexOf(value);
+  const index = arr.indexOf(value);
   if (index > -1) {
     arr.splice(index, 1);
   }
@@ -28,11 +28,11 @@ function GetDatabaseID(message) {
 }
 
 function SymbolDisplay(value, symbol) {
-  var response = "";
+  let response = "";
   if (value > 5) {
     response += symbol + " *x" + value + "*";
   } else {
-    for (var i = 0; i < value; i++) {
+    for (let i = 0; i < value; i++) {
       response += symbol;
     }
   }
@@ -40,7 +40,7 @@ function SymbolDisplay(value, symbol) {
 }
 
 function ShowCharacterStatus(character) {
-  var response = "**[__"+character.name+"__]**";
+  let response = "**[__"+character.name+"__]**";
   
   if (character.hp) {
     response += "\n- **HP:** " + SymbolDisplay(character.hp, ":heart: ");

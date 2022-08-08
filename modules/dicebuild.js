@@ -1,9 +1,9 @@
-var utils = require('./utils');
-var diceRegex = /^ *(\d+)?[ d](.*)/i;
-var alternateRegex = /^ *(.*)/i;
+const utils = require('./utils');
+const diceRegex = /^ *(\d+)?[ d](.*)/i;
+const alternateRegex = /^ *(.*)/i;
 
 function parseDicebuildCommand(params) {
-	var results = diceRegex.exec(params);
+	let results = diceRegex.exec(params);
 	if (results == null || results.length < 2)
 	{
 		results = alternateRegex.exec(params);
@@ -14,9 +14,9 @@ function parseDicebuildCommand(params) {
 		results[1] = 1
 	}
 	
-	var diceAmount = results[1];
+	const diceAmount = results[1];
 	
-	var faces = results[2].indexOf(';') == -1 ? results[2].split(' ') : results[2].split(';');
+	let faces = results[2].indexOf(';') == -1 ? results[2].split(' ') : results[2].split(';');
 	faces.forEach((item, index, list) => {list[index] = item.trim();});
 	faces = faces.filter(Boolean);
 	
@@ -29,11 +29,11 @@ function parseDicebuildCommand(params) {
 }
 
 function rollFacesNoRepeat(params, msg) {
-	var command = parseDicebuildCommand(params);
+	const command = parseDicebuildCommand(params);
 	if (typeof faces == "string") return faces;
 	
-	var diceAmount = command.dice;
-	var faces = command.faces;
+	let diceAmount = command.dice;
+	let faces = command.faces;
 	
 	if (diceAmount < 2)
 	{
@@ -62,18 +62,18 @@ function rollFacesNoRepeat(params, msg) {
 }
 
 function rollFaces(params, msg) {
-	var command = parseDicebuildCommand(params);
+	const command = parseDicebuildCommand(params);
 	if (typeof faces == "string") return faces;
 	
-	var diceAmount = command.dice;
-	var faces = command.faces;
+	let diceAmount = command.dice;
+	const faces = command.faces;
 	
 	if (diceAmount < 1)
 	{
 		return "You need to roll at least one dice.";
 	}
 	
-	var results = "**Dicebuild: **" + diceAmount + "  ×**「**";
+	let results = "**Dicebuild: **" + diceAmount + "  ×**「**";
 	
 	faces.forEach((item) => { results += item + ";"; });
 	

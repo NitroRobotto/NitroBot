@@ -1,11 +1,9 @@
 //var utils = require('./utils');
+const testRegex = /^Test!/i;
 
-var testFunctionHelp = "Help for Test Function";
 function testFunction(params, msg) {
     return params;
 }
-
-var testRegex = /^Test!/i;
 
 module.exports = {
   'reply': {

@@ -1,8 +1,8 @@
-var utils = require('./utils');
+const utils = require('./utils');
 
 function DDD() {
-   var diceOne = utils.D6();
-   var diceTwo = utils.D6();
+   const diceOne = utils.D6();
+   const diceTwo = utils.D6();
    return "**Rolling** 2d6:\n\n"
     + diceOne.str + " " + diceTwo.str
     + "\n\n**Total:** " + (diceOne.val + diceTwo.val);
