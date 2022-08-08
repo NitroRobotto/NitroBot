@@ -17,7 +17,8 @@ var modules = [
   'joke',
   'dicebuild',
   'fabula',
-  'diceCustom'
+  'diceCustom',
+  'dicepool'
 ];
 
 /*****************

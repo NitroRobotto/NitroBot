@@ -67,12 +67,10 @@ function evaluate(params, msg) {
         total: 0,
         faces: []
     };
-	
-	params = params.replace(' ', '');
 
     let max_terms = 10;
 
-    for (const term of params.split("+")) {
+    for (const term of params.replace(' ', '').split("+")) {
         const roll = _evaluate_term(term);
         total.total += roll.total;
         total.faces = total.faces.concat(roll.faces);
@@ -80,7 +78,7 @@ function evaluate(params, msg) {
         if (max_terms == 0) break;
     };
 
-    return "custom dice: " + params + " = " + total.total + ", " + total.faces;
+    return `rolling \`\`${params}\`\` = **[${total.total}]**  / ${total.faces}`;
 }
 
 module.exports = {

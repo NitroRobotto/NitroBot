@@ -4,7 +4,7 @@ function DoNovaRolls(amount, critRange) {
   let roll = NovaQuestion(amount, critRange);
   const result = {"novas": roll.novas, "successes": roll.successes, "rolls": [{"dice": amount, "str": roll.string}]};
 
-  while (roll.novas > 0 && result.successes < 20)
+  while (roll.novas > 0 && result.successes < 30)
   {
     roll = NovaQuestion(roll.novas, critRange);
     result.novas += roll.novas;
@@ -58,7 +58,7 @@ function NovaDiceCrit(args, message) {
     for (let explosion = 0; explosion < novaRoll.rolls.length; ++explosion) {
       if (explosion > 0)
       {
-        response += `**Rolling **[${novaRoll.rolls[explosion].dice}]** Nova Dice`;
+        response += `**Rolling **[${novaRoll.rolls[explosion-1].dice}]** Nova Dice`;
         for (let exclamation = 0; exclamation < explosion; exclamation++) response += '!';
         response += '**'
       }

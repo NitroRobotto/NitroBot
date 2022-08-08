@@ -100,5 +100,5 @@ module.exports = {
   'internal': {},
   'direct': [],
   'help' : "fabula {a} {b} = Rolls fabula dice with the specified faces. [Example: ``-fabula 6 8``, ``-fa d6 d8 MIG+STR``]\n"+
-            "fabulacrit {a} {b} = Tells you the likelihood to get a critical success or a fumble with those two dice."
+            "fabulastats {a} {b} = Tells you the likelihood to get a critical success or a fumble with those two dice."
 }
