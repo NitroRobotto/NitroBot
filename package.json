@@ -1,13 +1,8 @@
 {
-  "name": "NitroBot",
-  "version": "1.0.0",
+  "name": "nitrobot",
+  "version": "2.0.0",
   "description": "NodeJS Discord Bot",
   "main": "nitrobot.js",
-  "dependencies": {
-    "discord.js": "^12.5.3",
-    "uws": "^200.0.0"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/NitroRobotto/NitroBot/issues"
   },
-  "homepage": "https://github.com/NitroRobotto/NitroBot#readme"
+  "homepage": "https://github.com/NitroRobotto/NitroBot#readme",
+  "dependencies": {
+    "@discordjs/rest": "^1.1.0",
+    "discord.js": "^14.3.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.23.0"
+  }
 }

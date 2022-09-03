@@ -30,10 +30,10 @@ function parseDicebuildCommand(params) {
 
 function rollFacesNoRepeat(params, msg) {
 	const command = parseDicebuildCommand(params);
-	if (typeof faces == "string") return faces;
-	
 	let diceAmount = command.dice;
 	let faces = command.faces;
+
+	if (typeof faces == "string") return faces;
 	
 	if (diceAmount < 2)
 	{
@@ -63,10 +63,11 @@ function rollFacesNoRepeat(params, msg) {
 
 function rollFaces(params, msg) {
 	const command = parseDicebuildCommand(params);
-	if (typeof faces == "string") return faces;
-	
+
 	let diceAmount = command.dice;
-	const faces = command.faces;
+	let faces = command.faces;
+
+	if (typeof faces == "string") return faces;
 	
 	if (diceAmount < 1)
 	{

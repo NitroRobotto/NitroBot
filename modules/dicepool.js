@@ -5,7 +5,7 @@ function rollPool(faces) {
     let results = "";
     while (faces > 0) {
         const roll = utils.D6();
-        if (roll.val < 6) faces -= 1;
+        /*if (roll.val < 6)*/ faces -= 1;
         results += `${roll.str} `;
     }
     return results.trim();
