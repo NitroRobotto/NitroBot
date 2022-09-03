@@ -37,7 +37,6 @@ module.exports = {
 		.setDescription('Rolls some freeform unlimited dice. If no dice are specified, rolls only one dice.')
 		.addIntegerOption(option =>
 			option.setName('dice').setDescription('How many dice do you want to roll?')
-				.setRequired(true)
 				.setMinValue(-3)
 				.setMaxValue(3)
 				.addChoices(
@@ -50,11 +49,11 @@ module.exports = {
 		.addStringOption(option =>
 			option.setName('context').setDescription('Some text to append to give context to the dice roll.')),
 	async execute(interaction) {
-		const diceAmount = interaction.options.getInteger('dice', true);
-		const context = interaction.options.getString('context');
+		const diceAmount = interaction.options.getInteger('dice') ? interaction.options.getInteger('dice') : 1;
+		const context = interaction.options.getString('context') ? interaction.options.getString('context') + ' ' : '';
 
 		const results = DoFURolls(Math.abs(diceAmount), diceAmount > 0);
-		let reply = `Rolling [${diceAmount}] **FU** dice: ${context ? context + ' ' : ''}*(`;
+		let reply = `Rolling [${diceAmount}] **FU** dice: ${context}*( `;
 
 		for (let i = 0; i < results.dice.length; ++i) {
 			reply += results.dice[i] + ' ';

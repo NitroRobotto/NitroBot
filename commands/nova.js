@@ -2,14 +2,13 @@ const { SlashCommandBuilder } = require('discord.js');
 
 function DoNovaRolls(amount, critRange) {
 	let roll = NovaQuestion(amount, critRange);
-	const result = {'novas': roll.novas, 'successes': roll.successes, 'rolls': [{'dice': amount, 'str': roll.string}]};
+	const result = { 'novas': roll.novas, 'successes': roll.successes, 'rolls': [{ 'dice': amount, 'str': roll.string }] };
 
-	while (roll.novas > 0 && result.successes < 30)
-	{
+	while (roll.novas > 0 && result.successes < 30) {
 		roll = NovaQuestion(roll.novas, critRange);
 		result.novas += roll.novas;
 		result.successes += roll.successes;
-		result.rolls.push({'dice': roll.novas, 'str': roll.string});
+		result.rolls.push({ 'dice': roll.novas, 'str': roll.string });
 	}
 
 	return result;
@@ -20,7 +19,7 @@ function NovaQuestion(amount, critRange) {
 		novas: 0,
 		successes: 0,
 		string: '',
-	}
+	};
 
 	for (let i = 0; i < amount; ++i) {
 		const diceInt = Math.floor(Math.random() * 6 + 1);
@@ -29,11 +28,13 @@ function NovaQuestion(amount, critRange) {
 			roll.string += ':eight_spoked_asterisk: ';
 			++roll.novas;
 			++roll.successes;
-		} else if (diceInt >= 4) {
+		}
+		else if (diceInt >= 4) {
 			roll.string += ':white_check_mark: ';
 			++roll.successes;
-		} else {
-			roll.string += ':white_large_square: '
+		}
+		else {
+			roll.string += ':white_large_square: ';
 		}
 	}
 
@@ -70,12 +71,11 @@ module.exports = {
 		const novaRoll = DoNovaRolls(diceAmount, critRange);
 
 		let response = `**Rolling **[${diceAmount}]** Nova Dice**`;
-		if (critRange < 6) response += ` (Enhanced Crits! ${critRange}+)`
+		if (critRange < 6) response += ` (Enhanced Crits! ${critRange}+)`;
 		if (context) response += `: ${context}`;
 
 		for (let explosion = 0; explosion < novaRoll.rolls.length; ++explosion) {
-			if (explosion > 0)
-			{
+			if (explosion > 0) {
 				response += `**Rolling **[${novaRoll.rolls[explosion - 1].dice}]** Nova Dice`;
 				for (let exclamation = 0; exclamation < explosion; exclamation++) response += '!';
 				response += '**';
