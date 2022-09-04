@@ -113,7 +113,7 @@ module.exports = {
 		.addBooleanOption(option =>
 			option.setName('extendedcrits').setDescription('If true, you can get a critical from any non-1 pair of dice.'))
 		.addStringOption(option =>
-			option.setName('context').setDescription('Some text to append to give context to the dice roll.'))
+			option.setName('context').setDescription('Some text to give context to the dice roll.'))
 		.addBooleanOption(option =>
 			option.setName('simulate').setDescription('If true, calculates the odds for that dice pair: Only you can see the result.')),
 	async execute(interaction) {

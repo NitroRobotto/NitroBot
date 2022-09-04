@@ -47,7 +47,7 @@ module.exports = {
 					{ name: '-3', value: -3 },
 				))
 		.addStringOption(option =>
-			option.setName('context').setDescription('Some text to append to give context to the dice roll.')),
+			option.setName('context').setDescription('Some text to give context to the dice roll.')),
 	async execute(interaction) {
 		const diceAmount = interaction.options.getInteger('dice') ? interaction.options.getInteger('dice') : 1;
 		const context = interaction.options.getString('context') ? ` ${interaction.options.getString('context')} ` : '';

@@ -8,38 +8,43 @@ module.exports = {
 		return 1 + Math.floor((Math.random() * faces));
 	},
 
-	'D6' : function() {
-		const response = {
-			'str': '',
-			'val' : 1 + Math.floor((Math.random() * 6)),
-		};
-
-		switch (response.val) {
+	'numberToKeykap': function(number) {
+		switch (number) {
+		case 10:
+			return ':keycap_ten:';
+		case 9:
+			return ':nine:';
+		case 8:
+			return ':eight';
+		case 7:
+			return ':seven:';
 		case 6:
-			response.str = ':six:';
-			break;
+			return ':six:';
 		case 5:
-			response.str = ':five:';
-			break;
+			return ':five:';
 		case 4:
-			response.str = ':four:';
-			break;
+			return ':four:';
 		case 3:
-			response.str = ':three:';
-			break;
+			return ':three:';
 		case 2:
-			response.str = ':two:';
-			break;
+			return ':two:';
 		case 1:
-			response.str = ':one:';
-			break;
+			return ':one:';
 		}
-
-		return response;
 	},
+
+	'D6' : function() {
+		const dice = this.roll(6);
+		return {
+			'str': this.numberToKeykap(dice),
+			'val' : dice,
+		};
+	},
+
 	'GetRandomFromList' : function(list) {
 		return list[Math.floor(Math.random() * list.length)];
 	},
+
 	'RemoveItemFromList' : function(arr, value) {
 		const index = arr.indexOf(value);
 		if (index > -1) {

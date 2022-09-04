@@ -62,7 +62,7 @@ module.exports = {
 					{ name: '2+', value: 2 },
 				))
 		.addStringOption(option =>
-			option.setName('context').setDescription('Some text to append to give context to the dice roll.')),
+			option.setName('context').setDescription('Some text to give context to the dice roll.')),
 	async execute(interaction) {
 		const diceAmount = interaction.options.getInteger('dicecount', true);
 		const critRange = interaction.options.getInteger('critrange') ? interaction.options.getInteger('critrange') : 6;
