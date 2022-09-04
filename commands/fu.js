@@ -50,16 +50,15 @@ module.exports = {
 			option.setName('context').setDescription('Some text to append to give context to the dice roll.')),
 	async execute(interaction) {
 		const diceAmount = interaction.options.getInteger('dice') ? interaction.options.getInteger('dice') : 1;
-		const context = interaction.options.getString('context') ? interaction.options.getString('context') + ' ' : '';
+		const context = interaction.options.getString('context') ? ` ${interaction.options.getString('context')} ` : '';
 
 		const results = DoFURolls(Math.abs(diceAmount), diceAmount > 0);
-		let reply = `Rolling [${diceAmount}] **FU** dice: ${context}*( `;
+		let reply = `Rolling ${diceAmount} **FU** dice:${context}`;
 
 		for (let i = 0; i < results.dice.length; ++i) {
-			reply += results.dice[i] + ' ';
+			reply += ` [${results.dice[i]}]`;
 		}
-		reply += `)*\n\n${results.icon} **${results.str}**`;
 
-		await interaction.reply(reply);
+		await interaction.reply(reply + `\n\n${results.icon} **${results.str}**`);
 	},
 };

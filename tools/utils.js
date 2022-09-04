@@ -11,7 +11,7 @@ module.exports = {
 	'D6' : function() {
 		const response = {
 			'str': '',
-			'val' : 1 + Math.floor((Math.random() * 6))
+			'val' : 1 + Math.floor((Math.random() * 6)),
 		};
 
 		switch (response.val) {
