@@ -47,7 +47,7 @@ module.exports = {
 
 	'D6' : D6,
 
-	'GetRandomFromList' : (list) => list[roll(list.length)],
+	'GetRandomFromList' : (list) => list[roll(list.length - 1)],
 
 	'RemoveItemFromList' : (arr, value) => {
 		const index = arr.indexOf(value);
