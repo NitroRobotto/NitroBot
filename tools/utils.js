@@ -1,51 +1,55 @@
+function D6() {
+	const dice = roll(6);
+	return {
+		'str': numberToKeykap(dice),
+		'val' : dice,
+	};
+}
+
+function numberToKeykap(number) {
+	switch (number) {
+	case 10:
+		return ':keycap_ten:';
+	case 9:
+		return ':nine:';
+	case 8:
+		return ':eight';
+	case 7:
+		return ':seven:';
+	case 6:
+		return ':six:';
+	case 5:
+		return ':five:';
+	case 4:
+		return ':four:';
+	case 3:
+		return ':three:';
+	case 2:
+		return ':two:';
+	case 1:
+		return ':one:';
+	}
+}
+
+function roll(faces) {
+	return 1 + Math.floor((Math.random() * faces));
+}
+
 module.exports = {
 
 	'clamp' : (num, min, max) => Math.min(Math.max(num, min), max),
 
 	'displayPercent' : (percent) => `${(percent * 100).toFixed(1)}%`,
 
-	'roll' : function(faces) {
-		return 1 + Math.floor((Math.random() * faces));
-	},
+	'roll' : roll,
 
-	'numberToKeykap': function(number) {
-		switch (number) {
-		case 10:
-			return ':keycap_ten:';
-		case 9:
-			return ':nine:';
-		case 8:
-			return ':eight';
-		case 7:
-			return ':seven:';
-		case 6:
-			return ':six:';
-		case 5:
-			return ':five:';
-		case 4:
-			return ':four:';
-		case 3:
-			return ':three:';
-		case 2:
-			return ':two:';
-		case 1:
-			return ':one:';
-		}
-	},
+	'numberToKeykap': numberToKeykap,
 
-	'D6' : function() {
-		const dice = this.roll(6);
-		return {
-			'str': this.numberToKeykap(dice),
-			'val' : dice,
-		};
-	},
+	'D6' : D6,
 
-	'GetRandomFromList' : function(list) {
-		return list[Math.floor(Math.random() * list.length)];
-	},
+	'GetRandomFromList' : (list) => list[roll(list.length)],
 
-	'RemoveItemFromList' : function(arr, value) {
+	'RemoveItemFromList' : (arr, value) => {
 		const index = arr.indexOf(value);
 		if (index > -1) {
 			arr.splice(index, 1);
