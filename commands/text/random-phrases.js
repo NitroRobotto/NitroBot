@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { GetRandomFromList } = require('../tools/utils.js');
+const { GetRandomFromList } = require('../../tools/utils.js');
 
 const edgeStarters = [
 	'\\*teleports behind you\\*',

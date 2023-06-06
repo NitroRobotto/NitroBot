@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { GetRandomFromList } = require('../tools/utils.js');
+const { GetRandomFromList } = require('../../tools/utils.js');
 
 const fabulaOpportunities = [
 	'**[Advantage]** - *The next Check made by you or an ally will receive a +3 bonus.*',

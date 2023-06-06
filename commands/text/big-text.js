@@ -1,5 +1,5 @@
 const { ContextMenuCommandBuilder, ApplicationCommandType } = require('discord.js');
-const { numberToKeykap } = require('../tools/utils.js');
+const { numberToKeykap } = require('../../tools/utils.js');
 const letterRegex = /[a-z]/i;
 const numberRegex = /[0-9]/i;
 

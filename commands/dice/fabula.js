@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { roll, displayPercent } = require('../tools/utils.js');
+const { roll, displayPercent } = require('../../tools/utils.js');
 
 function FabulaStats(diceOne, diceTwo, extendedCrit) {
 	const smallDice = Math.min(diceOne, diceTwo);

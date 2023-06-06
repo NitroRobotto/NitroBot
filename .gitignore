@@ -1,6 +1,9 @@
 # NitroBot
 token.js
 config.json
+node_modules
+.env
+*.code-workspace
 
 # Logs
 logs

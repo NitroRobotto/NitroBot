@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const { GetRandomFromList, RemoveItemFromList } = require('../tools/utils.js');
+const { GetRandomFromList, RemoveItemFromList } = require('../../tools/utils.js');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -22,7 +22,7 @@ module.exports = {
 		faces = faces.filter(Boolean);
 		if (noRepeats) rolls = Math.min(rolls, faces.length);
 
-		let results = `**DicebuildOnce: **${rolls}  ×**「**`;
+		let results = `**Dicebuild: **${rolls}  ×**「**`;
 
 		faces.forEach((item) => { results += item + ';'; });
 
