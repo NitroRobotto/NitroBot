@@ -1,27 +1,14 @@
 const { SlashCommandBuilder } = require('discord.js');
 
 const suitValues = {
-	'♣': 107,
-	'♦': 97,
-	'♥': 75,
-	'♠': 65,
-	'🃏': 90,
+	'♣': 0,
+	'♦': 10,
+	'♥': 20,
+	'♠': 30,
+	'🃏': 40,
 };
 
-function decimalToHex(d, padding) {
-	let hex = Number(d).toString(16);
-	padding = typeof (padding) === 'undefined' || padding === null ? padding = 2 : padding;
-
-	while (hex.length < padding) {
-		hex = '0' + hex;
-	}
-
-	return hex;
-}
-
-function hexToDecimal(d) {
-	return parseInt(d, 16);
-}
+const suitArray = ['♣', '♦', '♥', '♠', '🃏'];
 
 // Generate a default poker deck
 function generateDeck() {
@@ -36,8 +23,13 @@ function generateDeck() {
 
 	// Add jokers to the deck
 	deck.push({ suit: '🃏', rank: 1 });
+	deck.push({ suit: '🃏', rank: 2 });
 
-	// Shuffle the deck using Fisher-Yates algorithm
+	return shuffle(deck);
+}
+
+// Shuffle the deck using Fisher-Yates algorithm
+function shuffle(deck) {
 	for (let i = deck.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		[deck[i], deck[j]] = [deck[j], deck[i]];
@@ -48,33 +40,41 @@ function generateDeck() {
 
 // Compress a deck into a string representation
 function compressDeck(deck) {
-	return deck.map(card => `${decimalToHex(suitValues[card.suit] + card.rank - 1, 2)}`).join('');
+	const buffer = Buffer.alloc(6);
+
+	for (const card of deck) {
+		const cardIndex = suitValues[card.suit] + (card.rank - 1);
+		const byteIndex = Math.floor(cardIndex / 8);
+		const bitIndex = cardIndex % 8;
+
+		buffer[byteIndex] |= (1 << bitIndex);
+	}
+
+	return buffer.toString('base64');
 }
 
-// Uncompress a deck from a string representation
+/**
+ * Uncompress a deck from a buffer.
+ * @param {Buffer} compressedDeck A byte array of the deck.
+ * @returns Array of { suit: string, rank:integer }
+ */
 function uncompressDeck(compressedDeck) {
 	const uncompressedDeck = [];
 
-	for (let i = 0; i <= compressedDeck.length; i += 2)	{
-		const rank = hexToDecimal(compressedDeck.slice(i, i + 2));
-		if (rank == 90) {
-			uncompressedDeck.push({ suit: '🃏', rank: 1 });
-		} else if (rank >= suitValues['♣']) {
-			uncompressedDeck.push({ suit: '♣', rank: rank - suitValues['♣'] + 1 });
-		} else if (rank >= suitValues['♦']) {
-			uncompressedDeck.push({ suit: '♦', rank: rank - suitValues['♦'] + 1 });
-		} else if (rank >= suitValues['♥']) {
-			uncompressedDeck.push({ suit: '♥', rank: rank - suitValues['♥'] + 1 });
-		} else if (rank >= suitValues['♠']) {
-			uncompressedDeck.push({ suit: '♠', rank: rank - suitValues['♠'] + 1 });
+	for (let cardIndex = 0; cardIndex < compressedDeck.length * 8; cardIndex++) {
+		const byteIndex = Math.floor(cardIndex / 8);
+		const bitIndex = cardIndex % 8;
+
+		if ((compressedDeck[byteIndex] & (1 << bitIndex))) {
+			uncompressedDeck.push({ suit: suitArray[Math.floor(cardIndex / 10)], rank: (cardIndex % 10) + 1 });
 		}
 	}
 
-	return uncompressedDeck;
+	return shuffle(uncompressedDeck);
 }
 
 function cardArrayToString(deck) {
-	return deck.map(card => `${card.rank}${card.suit}`).join(' ');
+	return deck.map(card => (card.suit == '🃏' ? '🃏' : `${card.rank}${card.suit}`)).join(' ');
 }
 
 module.exports = {
@@ -91,14 +91,14 @@ module.exports = {
 	async execute(interaction) {
 		const drawCount = interaction.options.getInteger('cards', true);
 		const deckString = interaction.options.getString('deck', false);
-		let deck = deckString ? uncompressDeck(deckString) : generateDeck();
+		let deck = deckString ? uncompressDeck(Buffer.from(deckString, 'base64')) : generateDeck();
 
 		const cards = cardArrayToString(deck.slice(0, drawCount < deck.length ? drawCount : deck.length));
 		deck = deck.slice(drawCount);
 
-		let response = `Hand: ${cards}`;
+		let response = `**Your Hand:** \`\`${cards}\`\``;
 		if (deck.length > 0) {
-			response += `\nDeck Code *(use it when drawing more cards from this same deck)*: ${compressDeck(deck)}`
+			response += `\n*Deck Code:* \`\`${compressDeck(deck)}\`\``;
 		}
 
 
