@@ -38,7 +38,11 @@ function shuffle(deck) {
 	return deck;
 }
 
-// Compress a deck into a string representation
+/**
+ * Compresses a deck into a byte buffer.
+ * @param {suit, rank} deck The uncompressed deck.
+ * @returns A buffer containing the deck as bytes.
+ */
 function compressDeck(deck) {
 	const buffer = Buffer.alloc(6);
 
@@ -50,7 +54,7 @@ function compressDeck(deck) {
 		buffer[byteIndex] |= (1 << bitIndex);
 	}
 
-	return buffer.toString('base64');
+	return buffer;
 }
 
 /**
@@ -74,33 +78,43 @@ function uncompressDeck(compressedDeck) {
 }
 
 function cardArrayToString(deck) {
-	return deck.map(card => (card.suit == '🃏' ? '🃏' : `${card.rank}${card.suit}`)).join(' ');
+	return deck.map(card => (card.suit == '🃏' ? '||🃏||' : `||${card.rank}${card.suit}||`)).join(' ');
 }
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('draw')
-		.setDescription('Draws cards from a deck.')
+		.setDescription('Draws cards from a deck of 42 cards: ♥♦♣♠ ranked from 1 to 10, and two jokers.')
 		.addIntegerOption(option =>
 			option.setName('cards').setDescription('How many cards will you draw?')
 				.setRequired(true)
 				.setMinValue(1)
-				.setMaxValue(10))
+				.setMaxValue(10)
+				.addChoices(
+					{ name: '1', value: 1 },
+					{ name: '2', value: 2 },
+					{ name: '3', value: 3 },
+					{ name: '4', value: 4 },
+					{ name: '5', value: 5 },
+					{ name: '6', value: 6 },
+					{ name: '7', value: 7 },
+					{ name: '8', value: 8 },
+					{ name: '9', value: 9 },
+					{ name: '10', value: 10 },
+				))
 		.addStringOption(option =>
-			option.setName('deck').setDescription('Your previous deck, if you had one.')),
+			option.setName('deck').setDescription('The deck code changes every time you draw cards.')),
 	async execute(interaction) {
 		const drawCount = interaction.options.getInteger('cards', true);
 		const deckString = interaction.options.getString('deck', false);
-		let deck = deckString ? uncompressDeck(Buffer.from(deckString, 'base64')) : generateDeck();
 
+		const deck = deckString ? uncompressDeck(Buffer.from(deckString, 'base64')) : generateDeck();
 		const cards = cardArrayToString(deck.slice(0, drawCount < deck.length ? drawCount : deck.length));
-		deck = deck.slice(drawCount);
 
 		let response = `**Your Hand:** \`\`${cards}\`\``;
-		if (deck.length > 0) {
-			response += `\n*Deck Code:* \`\`${compressDeck(deck)}\`\``;
+		if (deck.length > drawCount) {
+			response += `\n*Deck Code:* \`\`${compressDeck(deck.slice(drawCount)).toString('base64')}\`\``;
 		}
-
 
 		await interaction.reply({
 			content: response,
