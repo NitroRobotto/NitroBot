@@ -108,7 +108,7 @@ const arcana = {
 			'reversed': 'Self-doubt, avoidance of self-reflection, or missed opportunities.',
 		},
 		{
-			'XXI: name': 'The World',
+			'name': 'XXI: The World',
 			'upright': 'Completion, fulfillment, and integration of all aspects.',
 			'reversed': 'Lack of closure, unfinished tasks, or feeling stuck in a cycle.',
 		},
