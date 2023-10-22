@@ -1,361 +1,362 @@
 const { SlashCommandBuilder } = require('discord.js');
+const { GetRandomFromList, RemoveItemFromList } = require('../../tools/utils.js');
 
 const arcana = {
 	'major': [
 		{
-			'name': '0: The Fool',
-			'upright': 'Unexpected opportunities or discoveries.',
-			'reversed': 'Poor judgment or recklessness leading to setbacks.',
+			'name': '``0``: *The Fool*',
+			'upright': 'New beginnings, spontaneity, opportunities.',
+			'reversed': 'Carelessness, recklessness, naivety.',
 		},
 		{
-			'name': 'I: The Magician',
-			'upright': 'Mastery of skills or resources to achieve goals.',
-			'reversed': 'Manipulation or misuse of power causing obstacles.',
+			'name': '``I``: *The Magician*',
+			'upright': 'Manifestation, power, resourcefulness.',
+			'reversed': 'Deception, manipulation, missed opportunities.',
 		},
 		{
-			'name': 'II: The High Priestess',
-			'upright': 'Intuition and hidden knowledge guiding the way.',
-			'reversed': 'Ignoring instincts or failing to see the truth.',
+			'name': '``II``: *The High Priestess*',
+			'upright': 'Intuition, mystery, hidden knowledge.',
+			'reversed': 'Secrets, confusion, uncertainty.',
 		},
 		{
-			'name': 'III: The Empress',
-			'upright': 'Abundance, creativity, and nurturing support.',
-			'reversed': 'Overindulgence or lack of nurturing leading to depletion.',
+			'name': '``III``: *The Empress*',
+			'upright': 'Nurturing, abundance, fertility.',
+			'reversed': 'Overbearing, dependency, stagnation.',
 		},
 		{
-			'name': 'IV: The Emperor',
-			'upright': 'Authority, structure, and order.',
-			'reversed': 'Tyranny, control, or lack of leadership.',
+			'name': '``IV``: *The Emperor*',
+			'upright': 'Authority, leadership, structure.',
+			'reversed': 'Tyranny, control, domination.',
 		},
 		{
-			'name': 'V: The Hierophant',
-			'upright': 'Wisdom, tradition, and guidance from mentors.',
-			'reversed': 'Rebellion against traditions or dogmatic thinking.',
+			'name': '``V``: *The Hierophant*',
+			'upright': 'Tradition, spirituality, guidance.',
+			'reversed': 'Conformity, dogma, restriction.',
 		},
 		{
-			'name': 'VI: The Lovers',
-			'upright': 'Deep connections, harmony, and choices aligned with love.',
-			'reversed': 'Disharmony, difficult choices, or strained relationships.',
+			'name': '``VI``: *The Lovers*',
+			'upright': 'Love, harmony, partnerships.',
+			'reversed': 'Disharmony, choices, conflicts.',
 		},
 		{
-			'name': 'VII: The Chariot',
-			'upright': 'Determination, victory, and overcoming obstacles.',
-			'reversed': 'Lack of direction, conflicts, or feeling stuck.',
+			'name': '``VII``: *The Chariot*',
+			'upright': 'Determination, victory, success.',
+			'reversed': 'Defeat, obstacles, lack of direction.',
 		},
 		{
-			'name': 'VIII: Strength',
-			'upright': 'Inner strength, courage, and resilience.',
-			'reversed': 'Lack of confidence or struggle to overcome challenges.',
+			'name': '``VIII``: *Strength*',
+			'upright': 'Courage, inner strength, compassion.',
+			'reversed': 'Weakness, inner conflicts, self-doubt.',
 		},
 		{
-			'name': 'IX: The Hermit',
-			'upright': 'Solitude, reflection, and seeking inner guidance.',
-			'reversed': 'Isolation, withdrawal, or feeling lost without direction.',
+			'name': '``IX``: *The Hermit*',
+			'upright': 'Solitude, inner reflection, wisdom.',
+			'reversed': 'Isolation, withdrawal, loneliness.',
 		},
 		{
-			'name': 'X: Wheel of Fortune',
-			'upright': 'Favorable changes, luck, and positive outcomes.',
-			'reversed': 'Unexpected setbacks or cycles of misfortune.',
+			'name': '``X``: *Wheel of Fortune*',
+			'upright': 'Luck, change, destiny.',
+			'reversed': 'Misfortune, cycles, chaos.',
 		},
 		{
-			'name': 'XI: Justice',
-			'upright': 'Fairness, balance, and resolution of conflicts.',
-			'reversed': 'Injustice, legal issues, or imbalances in decision-making.',
+			'name': '``XI``: *Justice*',
+			'upright': 'Fairness, balance, truth.',
+			'reversed': 'Injustice, legal issues, unfairness.',
 		},
 		{
-			'name': 'XII: The Hanged Man',
-			'upright': 'Sacrifice, letting go, and gaining new perspectives.',
-			'reversed': 'Feeling stuck, resistance to change, or delays.',
+			'name': '``XII``: *The Hanged Man*',
+			'upright': 'Surrender, sacrifice, new perspectives.',
+			'reversed': 'Stagnation, indecision, feeling trapped.',
 		},
 		{
-			'name': 'XIII: Death',
-			'upright': 'Transformation, rebirth, and embracing new beginnings.',
-			'reversed': 'Fear of change, stagnation, or inability to let go.',
+			'name': '``XIII``: *Death*',
+			'upright': 'Transformation, rebirth, endings.',
+			'reversed': 'Resistance to change, stagnation, decay.',
 		},
 		{
-			'name': 'XIV: Temperance',
-			'upright': 'Balance, moderation, and harmony in all aspects.',
-			'reversed': 'Imbalance, extremes, or lack of patience.',
+			'name': '``XIV``: *Temperance*',
+			'upright': 'Balance, harmony, moderation.',
+			'reversed': 'Imbalance, excess, conflict.',
 		},
 		{
-			'name': 'XV: The Devil',
-			'upright': 'Awareness of desires, self-empowerment, and breaking free.',
+			'name': '``XV``: *The Devil*',
+			'upright': 'Release, liberation, overcoming vices.',
 			'reversed': 'Temptation, addiction, or being trapped by unhealthy patterns.',
 		},
 		{
-			'name': 'XVI: The Tower',
-			'upright': 'Sudden change, liberation, and breaking through illusions.',
-			'reversed': 'Resistance to change, avoiding necessary upheaval, or prolonged chaos.',
+			'name': '``XVI``: *The Tower*',
+			'upright': 'Sudden change, liberation, chaos.',
+			'reversed': 'Disaster, resistance to change, chaos.',
 		},
 		{
-			'name': 'XVII: The Star',
-			'upright': 'Hope, inspiration, and healing after difficult times.',
-			'reversed': 'Lack of faith, pessimism, or feeling lost in darkness.',
+			'name': '``XVII``: *The Star*',
+			'upright': 'Hope, inspiration, guidance.',
+			'reversed': 'Lost hope, despair, lack of inspiration.',
 		},
 		{
-			'name': 'XVIII: The Moon',
-			'upright': 'Intuition, dreams, and navigating the subconscious.',
-			'reversed': 'Deception, confusion, or being lost in illusions.',
+			'name': '``XVIII``: *The Moon*',
+			'upright': 'Illusions, intuition, inner turmoil.',
+			'reversed': 'Deception, confusion, anxiety.',
 		},
 		{
-			'name': 'XIX: The Sun',
-			'upright': 'Joy, vitality, and success in all endeavors.',
-			'reversed': 'Temporary setbacks, lack of clarity, or overshadowed happiness.',
+			'name': '``XIX``: *The Sun*',
+			'upright': 'Joy, success, enlightenment.',
+			'reversed': 'Lack of clarity, ego, overconfidence.',
 		},
 		{
-			'name': 'XX: Judgment',
-			'upright': 'Awakening, renewal, and a fresh start.',
-			'reversed': 'Self-doubt, avoidance of self-reflection, or missed opportunities.',
+			'name': '``XX``: *Judgment*',
+			'upright': 'Rebirth, redemption, awakening.',
+			'reversed': 'Regret, refusal to change, denial.',
 		},
 		{
-			'name': 'XXI: The World',
-			'upright': 'Completion, fulfillment, and integration of all aspects.',
-			'reversed': 'Lack of closure, unfinished tasks, or feeling stuck in a cycle.',
+			'name': '``XXI``: *The World*',
+			'upright': 'Completion, fulfillment, achievement.',
+			'reversed': ' Incompletion, unfinished business, stagnation.',
 		},
 	],
 	'minor': [
 		[
 			{
-				'name': 'Ace of Cups',
-				'description': 'New emotional connections, creative inspiration, or a fresh start in relationships.',
+				'name': 'Ace of Cups 💧',
+				'description': 'Emotional beginnings, love, pure feelings.',
 			},
 			{
-				'name': 'Two of Cups',
-				'description': 'Harmonious partnerships, balanced relationships, or mutual love and support.',
+				'name': 'Two of Cups 💧',
+				'description': 'Partnerships, unity, deep connections.',
 			},
 			{
-				'name': 'Three of Cups',
-				'description': 'Celebration, friendship, or joyful gatherings.',
+				'name': 'Three of Cups 💧',
+				'description': 'Joy, celebration, friendships.',
 			},
 			{
-				'name': 'Four of Cups',
-				'description': 'Contemplation, introspection, or missed opportunities due to complacency.',
+				'name': 'Four of Cups 💧',
+				'description': 'Contemplation, introspection, missed opportunities.',
 			},
 			{
-				'name': 'Five of Cups',
-				'description': 'Loss, disappointment, or grief.',
+				'name': 'Five of Cups 💧',
+				'description': 'Loss, grief, regret.',
 			},
 			{
-				'name': 'Six of Cups',
-				'description': 'Nostalgia, innocence, or reconnecting with pleasant memories.',
+				'name': 'Six of Cups 💧',
+				'description': 'Nostalgia, innocence, memories.',
 			},
 			{
-				'name': 'Seven of Cups',
-				'description': 'Choices, dreams, or illusions.',
+				'name': 'Seven of Cups 💧',
+				'description': 'Choices, dreams, illusions.',
 			},
 			{
-				'name': 'Eight of Cups',
-				'description': 'Soul-searching, leaving behind the familiar, or embarking on a spiritual journey.',
+				'name': 'Eight of Cups 💧',
+				'description': 'Abandonment, seeking a higher purpose, moving on.',
 			},
 			{
-				'name': 'Nine of Cups',
-				'description': 'Wishes fulfilled, contentment, or emotional satisfaction.',
+				'name': 'Nine of Cups 💧',
+				'description': 'Wishes fulfilled, contentment, satisfaction.',
 			},
 			{
-				'name': 'Ten of Cups',
-				'description': 'Domestic harmony, fulfillment in relationships, or a happy family life.',
+				'name': 'Ten of Cups 💧',
+				'description': 'Harmony, emotional fulfillment, happy families.',
 			},
 			{
-				'name': 'Page of Cups',
-				'description': 'Emotional messages, intuition, or creative endeavors.',
+				'name': 'Page of Cups 💧',
+				'description': 'Imagination, artistic expression, emotional beginnings.',
 			},
 			{
-				'name': 'Knight of Cups',
-				'description': 'Romance, chivalry, or pursuing emotional quests.',
+				'name': 'Knight of Cups 💧',
+				'description': 'Romance, chivalry, following the heart.',
 			},
 			{
-				'name': 'Queen of Cups',
-				'description': 'Compassion, empathy, or nurturing relationships.',
+				'name': 'Queen of Cups 💧',
+				'description': 'Empathy, intuition, emotional depth.',
 			},
 			{
-				'name': 'King of Cups',
-				'description': 'Emotional stability, wisdom, or balanced leadership.',
-			},
-		],
-		[
-			{
-				'name': 'Ace of Pentacles',
-				'description': 'New opportunities, material abundance, or the beginning of a prosperous endeavor.',
-			},
-			{
-				'name': 'Two of Pentacles',
-				'description': 'Balance, adaptability, or juggling multiple responsibilities.',
-			},
-			{
-				'name': 'Three of Pentacles',
-				'description': 'Collaboration, craftsmanship, or recognition for skills and talents.',
-			},
-			{
-				'name': 'Four of Pentacles',
-				'description': 'Stability, possessiveness, or holding onto material possessions.',
-			},
-			{
-				'name': 'Five of Pentacles',
-				'description': 'Financial hardship, adversity, or seeking assistance.',
-			},
-			{
-				'name': 'Six of Pentacles',
-				'description': 'Generosity, charity, or receiving help and support.',
-			},
-			{
-				'name': 'Seven of Pentacles',
-				'description': 'Patience, perseverance, or waiting for the fruits of labor.',
-			},
-			{
-				'name': 'Eight of Pentacles',
-				'description': 'Dedication, craftsmanship, or skill enhancement.',
-			},
-			{
-				'name': 'Nine of Pentacles',
-				'description': 'Financial independence, luxury, or enjoying the rewards of hard work.',
-			},
-			{
-				'name': 'Ten of Pentacles',
-				'description': 'Wealth, legacy, or a prosperous and stable family life.',
-			},
-			{
-				'name': 'Page of Pentacles',
-				'description': 'Ambition, practicality, or the pursuit of knowledge and skills.',
-			},
-			{
-				'name': 'Knight of Pentacles',
-				'description': 'Responsibility, dependability, or steady progress toward goals.',
-			},
-			{
-				'name': 'Queen of Pentacles',
-				'description': 'Abundance, practicality, or nurturing and providing for others.',
-			},
-			{
-				'name': 'King of Pentacles',
-				'description': 'Prosperity, success, or wise and practical leadership.',
+				'name': 'King of Cups 💧',
+				'description': 'Compassion, emotional mastery, wisdom.',
 			},
 		],
 		[
 			{
-				'name': 'Ace of Swords',
-				'description': 'Mental clarity, new ideas, or a breakthrough in communication.',
+				'name': 'Ace of Pentacles 💰',
+				'description': ' New opportunities, financial growth, stability.',
 			},
 			{
-				'name': 'Two of Swords',
-				'description': 'Indecision, stalemate, or the need to make a difficult choice.',
+				'name': 'Two of Pentacles 💰',
+				'description': 'Balance, juggling priorities, adaptability.',
 			},
 			{
-				'name': 'Three of Swords',
-				'description': 'Heartbreak, betrayal, or emotional pain.',
+				'name': 'Three of Pentacles 💰',
+				'description': 'Collaboration, craftsmanship, skill development.',
 			},
 			{
-				'name': 'Four of Swords',
-				'description': 'Rest, recuperation, or temporary retreat for self-reflection.',
+				'name': 'Four of Pentacles 💰',
+				'description': 'Financial security, possessiveness, conservatism.',
 			},
 			{
-				'name': 'Five of Swords',
-				'description': 'Conflict, competition, or a need to assert oneself.',
+				'name': 'Five of Pentacles 💰',
+				'description': 'Hardship, poverty, material loss.',
 			},
 			{
-				'name': 'Six of Swords',
-				'description': 'Transition, moving on, or finding solace after a challenging time.',
+				'name': 'Six of Pentacles 💰',
+				'description': 'Generosity, charity, giving and receiving.',
 			},
 			{
-				'name': 'Seven of Swords',
-				'description': 'Deception, trickery, or hidden agendas.',
+				'name': 'Seven of Pentacles 💰',
+				'description': 'Evaluation, patience, reaping what you\'ve sown.',
 			},
 			{
-				'name': 'Eight of Swords',
-				'description': 'Feeling trapped, self-imposed limitations, or a need for liberation.',
+				'name': 'Eight of Pentacles 💰',
+				'description': 'Dedication, craftsmanship, attention to detail.',
 			},
 			{
-				'name': 'Nine of Swords',
-				'description': 'Anxiety, nightmares, or mental anguish.',
+				'name': 'Nine of Pentacles 💰',
+				'description': 'Self-sufficiency, luxury, material well-being.',
 			},
 			{
-				'name': 'Ten of Swords',
-				'description': 'Defeat, betrayal, or hitting rock bottom before a fresh start.',
+				'name': 'Ten of Pentacles 💰',
+				'description': 'Legacy, family wealth, financial abundance.',
 			},
 			{
-				'name': 'Page of Swords',
-				'description': 'Intellectual curiosity, honesty, or seeking the truth.',
+				'name': 'Page of Pentacles 💰',
+				'description': 'New opportunities, practicality, learning.',
 			},
 			{
-				'name': 'Knight of Swords',
-				'description': 'Ambition, assertiveness, or taking decisive action.',
+				'name': 'Knight of Pentacles 💰',
+				'description': 'Responsibility, dedication, reliability.',
 			},
 			{
-				'name': 'Queen of Swords',
-				'description': 'Clarity, independence, or using intellect and logic.',
+				'name': 'Queen of Pentacles 💰',
+				'description': 'Nurturing, abundance, practical wisdom.',
 			},
 			{
-				'name': 'King of Swords',
-				'description': 'Intellectual power, leadership, or making fair and just decisions.',
+				'name': 'King of Pentacles 💰',
+				'description': 'Financial acumen, stability, material success.',
 			},
 		],
 		[
 			{
-				'name': 'Ace of Wands',
-				'description': 'New opportunities, creative inspiration, or the beginning of a passionate endeavor.',
+				'name': 'Ace of Swords 🗡️',
+				'description': 'Clarity, truth, a breakthrough.',
 			},
 			{
-				'name': 'Two of Wands',
-				'description': 'Personal power, future planning, or making choices aligned with passions.',
+				'name': 'Two of Swords 🗡️',
+				'description': 'Choices, indecision, balancing opposing forces.',
 			},
 			{
-				'name': 'Three of Wands',
-				'description': 'Expansion, progress, or seeing one\'s efforts come to fruition.',
+				'name': 'Three of Swords 🗡️',
+				'description': 'Heartbreak, sorrow, emotional pain.',
 			},
 			{
-				'name': 'Four of Wands',
-				'description': 'Celebration, harmony, or a joyous occasion.',
+				'name': 'Four of Swords 🗡️',
+				'description': 'Rest, recuperation, contemplation.',
 			},
 			{
-				'name': 'Five of Wands',
-				'description': 'Conflict, competition, or a need for compromise.',
+				'name': 'Five of Swords 🗡️',
+				'description': 'Defeat, conflict, winning at a cost.',
 			},
 			{
-				'name': 'Six of Wands',
-				'description': 'Victory, recognition, or public acclaim.',
+				'name': 'Six of Swords 🗡️',
+				'description': 'Transition, moving forward, recovery.',
 			},
 			{
-				'name': 'Seven of Wands',
-				'description': 'Courage, perseverance, or defending one\'s position.',
+				'name': 'Seven of Swords 🗡️',
+				'description': 'Deception, sneakiness, avoiding conflict.',
 			},
 			{
-				'name': 'Eight of Wands',
-				'description': 'Swiftness, progress, or fast-paced developments.',
+				'name': 'Eight of Swords 🗡️',
+				'description': 'Feeling trapped, self-imposed limitations, a need for liberation.',
 			},
 			{
-				'name': 'Nine of Wands',
-				'description': 'Resilience, persistence, or the need to protect what\'s been achieved.',
+				'name': 'Nine of Swords 🗡️',
+				'description': 'Anxiety, nightmares, inner turmoil.',
 			},
 			{
-				'name': 'Ten of Wands',
-				'description': 'Burden, overextension, or feeling overwhelmed by responsibilities.',
+				'name': 'Ten of Swords 🗡️',
+				'description': 'Rock bottom, betrayal, hitting a breaking point.',
 			},
 			{
-				'name': 'Page of Wands',
-				'description': 'Enthusiasm, exploration, or the emergence of new passions.',
+				'name': 'Page of Swords 🗡️',
+				'description': 'Curiosity, honesty, learning.',
 			},
 			{
-				'name': 'Knight of Wands',
-				'description': 'Action, adventure, or pursuing one\'s passions boldly.',
+				'name': 'Knight of Swords 🗡️',
+				'description': 'Ambition, determination, swift action.',
 			},
 			{
-				'name': 'Queen of Wands',
-				'description': 'Energy, confidence, or embracing leadership roles.',
+				'name': 'Queen of Swords 🗡️',
+				'description': 'Clarity, resilience, intellectual strength.',
 			},
 			{
-				'name': 'King of Wands',
-				'description': 'Vision, charisma, or utilizing creative and entrepreneurial abilities.',
+				'name': 'King of Swords 🗡️',
+				'description': 'Authority, logic, fair judgment.',
+			},
+		],
+		[
+			{
+				'name': 'Ace of Wands 🔥',
+				'description': 'Creative inspiration, new opportunities, a burst of energy.',
+			},
+			{
+				'name': 'Two of Wands 🔥',
+				'description': 'Planning, choices, exploration.',
+			},
+			{
+				'name': 'Three of Wands 🔥',
+				'description': 'Expansion, progress, foresight.',
+			},
+			{
+				'name': 'Four of Wands 🔥',
+				'description': 'Celebration, harmony, a significant event.',
+			},
+			{
+				'name': 'Five of Wands 🔥',
+				'description': 'Competition, conflict, rivalry.',
+			},
+			{
+				'name': 'Six of Wands 🔥',
+				'description': 'Victory, recognition, achievements.',
+			},
+			{
+				'name': 'Seven of Wands 🔥',
+				'description': 'Courage, perseverance, standing your ground.',
+			},
+			{
+				'name': 'Eight of Wands 🔥',
+				'description': 'Swiftness, rapid progress, communication.',
+			},
+			{
+				'name': 'Nine of Wands 🔥',
+				'description': 'Resilience, perseverance, inner strength.',
+			},
+			{
+				'name': 'Ten of Wands 🔥',
+				'description': 'Burden, responsibility, hard work.',
+			},
+			{
+				'name': 'Page of Wands 🔥',
+				'description': 'Enthusiasm, exploration, new ideas.',
+			},
+			{
+				'name': 'Knight of Wands 🔥',
+				'description': 'Determination, adventure, leadership.',
+			},
+			{
+				'name': 'Queen of Wands 🔥',
+				'description': 'Charisma, confidence, influence.',
+			},
+			{
+				'name': 'King of Wands 🔥',
+				'description': 'Authority, vision, bold action.',
 			},
 		],
 	],
 };
 
-function get_random(list) {
+function get_random(list) {	
 	return list[Math.floor((Math.random() * list.length))];
 }
 
-function major_arcana_to_text(deck) {
+function major_arcana_to_text(deck, uprightChance) {
 	return deck.map((card) => {
-		const upright = Math.random() < 0.5;
+		const upright = Math.random() < uprightChance;
 		return `* **${card.name}${upright ? '' : ' *(Reversed)*'}:** ${upright ? card.upright : card.reversed}`;
 	}).join('\n');
 }
@@ -382,7 +383,7 @@ module.exports = {
 				))
 		.addIntegerOption(option =>
 			option.setName('minor').setDescription('How many Minor Arcana cards will you draw?')
-				.setRequired(true)
+				.setRequired(false)
 				.setMinValue(0)
 				.setMaxValue(5)
 				.addChoices(
@@ -392,27 +393,57 @@ module.exports = {
 					{ name: '3', value: 3 },
 					{ name: '4', value: 4 },
 					{ name: '5', value: 5 },
+				))
+		.addIntegerOption(option =>
+			option.setName('mode').setDescription('How should we draw the Major Arcana? Default: Normal Draw.')
+				.setRequired(false)
+				.setMinValue(0)
+				.setMaxValue(5)
+				.addChoices(
+					{ name: 'Normal', value: 0 },
+					{ name: 'Upright Only', value: 1 },
+					{ name: 'Reversed Only', value: 2 },
 				)),
 	async execute(interaction) {
 		let majorCards = interaction.options.getInteger('major', true);
-		let minorCards = interaction.options.getInteger('minor', true);
+		let minorCards = interaction.options.getInteger('minor', false);
+		const mode = interaction.options.getInteger('mode', false);
+
+		let uprightChance = 0.5;
+
+		switch (mode) {
+		case 2:
+			uprightChance = 0;
+			break;
+		case 1:
+			uprightChance = 1;
+			break;
+		case 0:
+		default:
+			uprightChance = 0.5;
+		}
 
 		let cards = [];
-		let response = '';
+		let response = '**Major Arcana:**\n';
 
-		while (majorCards > 0) {
-			cards.push(get_random(arcana.major));
-			majorCards -= 1;
+		let tempCard;
+		let deck = [].concat(arcana.major);
+		while (majorCards-- > 0) {
+			tempCard = GetRandomFromList(deck);
+			deck = RemoveItemFromList(deck, tempCard);
+			cards.push(tempCard);
 		}
 
-		response += major_arcana_to_text(cards);
+		response += major_arcana_to_text(cards, uprightChance);
 
-		cards = [];
-		while (minorCards > 0) {
-			cards.push(get_random(get_random(arcana.minor)));
-			minorCards -= 1;
+		if (minorCards) {
+			cards = [];
+			while (minorCards > 0) {
+				cards.push(get_random(get_random(arcana.minor)));
+				minorCards -= 1;
+			}
+			response += '\n\n**Minor Arcana:**\n' + minor_arcana_to_text(cards);
 		}
-		response += '\n' + minor_arcana_to_text(cards);
 
 		await interaction.reply({
 			content: response,
