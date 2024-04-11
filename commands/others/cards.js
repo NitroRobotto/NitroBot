@@ -78,7 +78,7 @@ function uncompressDeck(compressedDeck) {
 }
 
 function cardArrayToString(deck) {
-	return deck.map(card => (card.suit == '🃏' ? '||🃏||' : `||${card.rank}${card.suit}||`)).join(' ');
+	return deck.map(card => (card.suit == '🃏' ? '|🃏|' : `|${card.rank}${card.suit}|`)).join(' ');
 }
 
 module.exports = {
